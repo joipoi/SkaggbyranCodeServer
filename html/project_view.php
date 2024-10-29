@@ -1,10 +1,8 @@
 <?php
-echo "<a href='/projects.php'>View All Projects</a> <br>";
-echo "<a href='/index.php'>Upload A Project</a> <br>";
-
+echo ' <p> <a href="index.php">Upload A Project</a> | <a href="projects.php">View All Projects</a> | <a href="login.php">Login</a> | <a href="register.php">Register</a>  </p>';
 if (isset($_GET['user']) && isset($_GET['project'])) {
-    $username = preg_replace('/[^a-zA-Z0-9_-]/', '', $_GET['user']);
-    $projectName = preg_replace('/[^a-zA-Z0-9_-]/', '', $_GET['project']);
+    $username = $_GET['user'];
+    $projectName = $_GET['project'];
     $directory = "uploads/$username/$projectName/";
 
     if (is_dir($directory)) {

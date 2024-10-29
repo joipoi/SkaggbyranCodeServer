@@ -4,7 +4,7 @@ $baseDir = 'uploads/';
 $userDirs = array_filter(glob($baseDir . '*'), 'is_dir'); // Get all user directories
 
 echo "<h1>User Projects</h1>";
-echo "<a href='/index.php'>Upload Project</a>";
+echo '<p> <a href="index.php">Upload A Project</a> | <a href="login.php">Login</a> | <a href="register.php">Register</a>  </p>';
 if (empty($userDirs)) {
     echo "<p>No user projects found.</p>";
 } else {

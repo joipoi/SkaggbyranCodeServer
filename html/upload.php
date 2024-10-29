@@ -1,5 +1,16 @@
 <?php
+session_start();
 
+// MySQL connection logic here
+$servername = getenv('DB_SERVER');
+$db_username = getenv('DB_USER');
+$db_password = getenv('DB_PASS');
+$dbname = getenv('DB_NAME');
+
+$conn = new mysqli($servername, $db_username, $db_password, $dbname);
+if ($conn->connect_error) {
+    die("Connection failed: " . $conn->connect_error);
+}
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     // Get the username and sanitize it
     $username = preg_replace('/[^a-zA-Z0-9_-]/', '', $_POST['username']);

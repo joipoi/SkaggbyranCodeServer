@@ -1,38 +1,37 @@
+<?php
+session_start();
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Upload Folder</title>
-    <script>
-        function toggleGuestMode(checkbox) {
-            const usernameInput = document.getElementById('username');
-            if (checkbox.checked) {
-                usernameInput.value = 'guest';
-                usernameInput.readOnly = true; // Make input uneditable
-            } else {
-                usernameInput.value = ''; // Clear value when unchecked
-                usernameInput.readOnly = false; // Allow editing
-            }
-        }
-    </script>
+    <title>Upload Files or Folders</title>
 </head>
 <body>
-    <h1>Upload a Folder</h1>
-<form action="upload.php" method="POST" enctype="multipart/form-data">
-         <label for="username">Enter Your Name:</label>
-        <input type="text" id="username" name="username" required>
-                 <label>
-            <input type="checkbox" id="guestCheckbox" onclick="toggleGuestMode(this)"> Upload as Guest
-        </label> <br>
+    <h1>Upload Files or Folders</h1>
 
-        <label for="projectname">Enter Your Project Name:</label>
+    <?php if (isset($_SESSION['username'])): ?>
+        <p>Welcome, <?= htmlspecialchars($_SESSION['username']) ?>!</p>
+	<form action="upload.php" method="POST" enctype="multipart/form-data">
+<label for="projectname">Enter Your Project Name:</label>
         <input type="text" name="projectname" required> <br>
+            <input type="hidden" name="username" value="<?= htmlspecialchars($_SESSION['username']) ?>">
+            <input type="file" name="files[]" webkitdirectory multiple required>
+            <input type="submit" value="Upload">
+        </form>
+    <?php else: ?>
+        <p>Please log in to upload files. You can also upload as a guest.</p>
+	<form action="upload.php" method="POST" enctype="multipart/form-data">
+<label for="projectname">Enter Your Project Name:</label>
+<input type="text" name="projectname" required> <br>
+            <input type="hidden" name="username" value="guest">
+            <input type="file" name="files[]" webkitdirectory multiple required>
+            <input type="submit" value="Upload as Guest">
+        </form>
+    <?php endif; ?>
 
-        <input type="file" name="files[]" webkitdirectory multiple required>
-        <input type="submit" value="Upload">
-    </form>
-        <a href ="/projects.php">View All Projects </a>
+    <p><a href="login.php">Login</a> | <a href="register.php">Register</a> | <a href="projects.php">View All Projects</a></p>
 </body>
 </html>
-
