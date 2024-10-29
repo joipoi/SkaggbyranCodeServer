@@ -20,8 +20,8 @@ if (empty($userDirs)) {
             echo "<ul>";
             foreach ($projectDirs as $projectDir) {
                 $projectName = basename($projectDir);
-                // Create a clickable link for the project
-                echo "<li><a href='view.php?user=" . urlencode($username) . "&project=" . urlencode($projectName) . "'>" . htmlspecialchars($projectName) . "</a></li>";
+		// Create a clickable link for the project
+echo "<li><a href='project_view.php?user=" . urlencode($username) . "&project=" . urlencode($projectName) . "'>" . htmlspecialchars($projectName) . "</a></li>";
             }
             echo "</ul>";
         } else {

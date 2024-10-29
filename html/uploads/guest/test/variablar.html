@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Variablar</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.62.0/codemirror.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.62.0/theme/monokai.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.62.0/codemirror.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.62.0/mode/javascript/javascript.min.js"></script>
+    <link rel="stylesheet" href="styles/main.css">
+</head>
+<body>
+   
+    
+    <main>
+        <h1>Variablar</h1>
+        <ul>
+            <li><a href="#vad-ar-en-variabel">Vad är en variabel</a></li>
+            <li><a href="#skapa-en-variabel">Skapa en variabel</a></li>
+            <li><a href="#variabel-namn">Variabel namn</a></li>
+            <li><a href="#anvanda-en-variabel">Använda en variabel</a></li>
+            <li><a href="#andra-en-variabel">Ändra en variabel</a></li>
+            <li><a href="#variabel-typer">Variabel typer</a></li>
+            <li><a href="#testa-sjalv">Testa själv</a></li>
+            <li><a href="#extra">Frivillig extra läsning</a></li>
+        </ul>
+        
+        <h2 id="vad-ar-en-variabel">Vad är en variabel</h2>
+        <p>En variabel är en bit data(text, nummer, osv) som man har gett ett namn för att kunna använda senare. En variabel består av 3 delar,
+        <strong>typ</strong>, <strong>namn</strong> och <strong>data</strong>.</p>
+        <p>I andra programmeringsspråk är det vanligt att man behöver säga vilken typ av data det är, i javascript behöver man inte det för javascript vet vilken typ det är automatiskt.
+               Man använder istället ordet <strong>let</strong>, ibland kan man använda <strong>var</strong> eller <strong>const</strong> men det är överkurs för nu.</p>
+        
+        <h2 id="skapa-en-variabel">Skapa en variabel</h2>
+        <p>Här är ett exempel på att skapa en javascript variabel:</p>
+        <pre><code>let myNumber = 15;</code></pre>
+        <p>I detta exempel är namnet <code>"myNumber"</code> och datan är 15. Typen är nummer vilket brukar kallas int, men vi behöver inte säga typen i javascript, 
+                vi använder <strong>var</strong> istället.</p>
+        
+        <h2 id="variabel-namn">Variabel namn</h2>
+        <p>Det är bra att veta vad man kan ge en variabel för namn. Namnet kan innehålla bokstäver, siffror, understreck, och dollartecken, men kan inte börja på en siffra.
+                     Det finns också vissa namn som javascript redan använder så du kan inte använda dem, ett exempel på detta är var</p>
+        <p>Exempel på korrekta variabel namn:</p>
+        <ul>
+            <li>mittnummer</li>
+            <li>myVariable123</li>
+            <li>this$is$a$var</li>
+            <li>_aVariabel</li>
+        </ul>
+        <p>Exempel på felaktiga variabel namn:</p>
+        <ul>
+            <li>123myVariabel</li>
+            <li>var</li>
+            <li>15</li>
+        </ul>
+        
+        <h2 id="anvanda-en-variabel">Använda en variabel</h2>
+        <p>När du har skapat en variabel kan du sedan använda den med hjälp av namnet. Om vi nu ville skriva ut vårt nummer till konsolen kan vi göra så här:</p>
+        <pre><code>console.log(myNumber);</code></pre>
+        <p>Vi kommer till mer sätt att använda variabler i senare kapitel.</p>
+        
+        <h2 id="andra-en-variabel">Ändra en variabel</h2>
+        <p>Om du har skapat en variabel och sedan vill ändra den kan det se ut så här:</p>
+        <pre><code>myNumber = 10;</code></pre>
+        <p>När variabeln redan finns behöver man inte använda <strong>var</strong> ordet, man behöver bara namnet och den nya datan.</p>
+        <p>Eftersom javascript inte använder typer på samma sätt som andra språk kan du även ändra din variabel till en helt ny typ så här:</p>
+        <pre><code>myNumber = "Nu är jag text"</code></pre>
+        
+        <h2 id="variabel-typer">Variabel typer</h2>
+        <p>Nu vet du att javascript inte kräver att du skriver typen men alla variabler har fortfarande en typ som javascript håller koll på, den typen bestämmer javascript själv baserat på hur datan ser ut.</p>
+        <p>Det finns ganska många typer för variabler men vi börjar med 3 stycken: <strong>int(nummer)</strong>, <strong>string(text)</strong>, <strong>boolean(sant/falskt)</strong>.</p>
+        
+        <h3 id="int">Int</h3>
+        <p>Int är kort för Integer vilket är heltal på engelska. Alla heltal upp till 2147483647 räknas som int. Negativa tal är också int.
+                                     Tal som inte är heltal är inte int, de är en annan typ som kallas float.</p>
+        <p>Exempel:</p>
+        <pre><code>let myInt = 20;</code></pre>
+        
+        <h3 id="string">String</h3>
+        <p>För att någonting ska bli en string måste det vara inom citattecken <code>"Detta är en string"</code>. Du kan även lägga siffor inom citattecken och så blir det en string istället för en int.
+                                     Alla tecken inom  citattecken blir en string, inte bara bokstäver.</p>
+        <p>Exempel:</p>
+        <pre><code>let myString = "string text här, 123!";</code></pre>
+        
+        <h3 id="boolean">Boolean</h3>
+        <p>Detta är en variabel som bara kan ha ett av två värde, true(sant) eller false(falskt). 
+                                        Detta kan vara bra att för kod brukar ofta kolla om någonting är sant eller falskt.</p>
+        <p>Exempel:</p>
+        <pre><code>let isThisTrue = true;</code></pre>
+
+        <h2 id="extra">Frivillig extra läsning</h2>
+        <p>Här kan du gå djupare in i detta kapitlet om du vill:</p>
+        <a href="https://www.w3schools.com/js/js_variables.asp">https://www.w3schools.com/js/js_variables.asp</a> <br>
+        <a href="https://www.w3schools.com/js/js_datatypes.asp">https://www.w3schools.com/js/js_datatypes.asp</a> <br>
+        <a href="https://www.javascript.com/learn/variables">https://www.javascript.com/learn/variables</a>
+        
+        <h2 id="testa-sjalv">Testa själv</h2>
+        <p>Nu är det din tur att testa själv. Du kan skriva din kod här under och det finns även en konsol som du kan skriva ut
+                                data till genom att använda <code>console.log("text eller en variabel här");</code>
+        kom ihåg om du ska skriva ut en variabel ska du inte använda citat tecken <code>console.log(minVariabel);</code>.</p>
+        <p>Testa följande utmaningar:</p>
+        <ol>
+            <li>Skapa en variabel som har värdet 10, skriv ut den till konsolen</li>
+            <li>Skapa en variabel som har värdet "hejsan världen" skriv ut den till konsolen</li>
+            <li>Ändra värdet på en av dina variablar och skriv ut det nya värdet</li>
+        </ol>
+        
+        <textarea id="code-editor"></textarea>
+<button id="run-button">Run Code</button>
+<div id="output"></div>
+</main>
+
+<script src="scripts/codeEditor.js"></script>
+<script>
+document.addEventListener("DOMContentLoaded", function() {
+    const editor = new CodeEditor("code-editor", {
+        outputId: "output",
+        runButtonId: "run-button"
+    });
+    editor.setValue(`//Använd console.log(); för att skriva ut din data. Kom ihåg att ge din variabel ett namn och att avsluta med semicolon \n//Skapa en variabel med värde 10 här \n\n //Skriv ut den här \n\n //Skapa en variabel med värde "hejsan världen" här \n\n//Skriv ut den här\n\n//Ändra värdet på en av dem \n\n//Skriv ut den igen`);
+
+});
+</script>
+        
+<nav>
+    <a href="intro.html">Intro</a> 
+    <a href="variablar.html">Variablar</a> 
+    <a href="funktioner.html">Funktioner</a> 
+    <a href="integer.html">Integer</a>
+    <a href="string.html">String</a>
+    <a href="if-else.html">If Else</a>
+    <a href="loops.html">Loops</a>
+    <a href="html.html">HTML</a>
+    <a href="events.html">Events</a>
+  </nav>
+</body>
+</html>
+
+
+
+
+
+

@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>String</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.62.0/codemirror.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.62.0/theme/monokai.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.62.0/codemirror.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.62.0/mode/javascript/javascript.min.js"></script>
+    <link rel="stylesheet" href="styles/main.css">
+</head>
+<body>
+    
+    <main>
+        <h1>Integer</h1>
+
+        <ul>
+            <li><a href="#vad">Vad är en string</a></li>
+            <li><a href="#length">Hur många tecken är min string</a></li>
+            <li><a href="#concat">Sätta ihop flera strings</a></li>
+            <li><a href="func">Javascripts string funktioner</a></li>
+            <li><a href="#extra">Frivillig extra läsning</a></li>
+            <li><a href="#testa">Testa själv</a></li>
+     
+        </ul>
+
+        <h2 id="vad">Vad är en string</h2>
+        <p>I variabler kapitlet lärde du dig att string är en av de vanligaste variabla typerna. String är text, alla bokstäver, siffror och andra tecken kan vara string. 
+            <br>En string är alltid i citattecken<b>"string här"</b>, man kan också använda enkla citattecken istället för dubbla <b>‘också en string’</b>.</p>
+       
+
+        <h2 id="length">Hur många tecken är min string</h2>
+        <p>Hur många tecken en string har kallas längd. Du kan få längden på din string genom att använda length på detta vis:</p>
+        <code>let exampleText = "här är lite text"
+           <br> let textLength = exampleText.length;
+            </code>
+        <p>I detta sammanhang är <b>length</b> någonting som kallas<b> property</b>, det är överkurs för nu, men du kan tänka på dem som ganska liknande till funktioner men du använder inte parentes och kan inte ge den någon data.
+            <br>Properties är kopplade till objekt vilket du kommer lära dig om senare.</p>
+
+        <h2 id="concat">Sätta ihop flera strings</h2>
+        <p>När man använder nummer(int) så betyder plustecken(+) addition, men när du använder strings betyder det att du sätter ihop två strings till en. Här är ett exempel:</p>
+        <code>let hello = "hejsan";
+           <br> let world = " världen";
+           <br> let helloWorld = hello + world;
+           <br> //värdet på helloWorld blir "hejsan världen"
+           <br> </code>
+        <p>Det är bra att komma ihåg att om du vill ha ett mellanrum behöver det vara med antigen i slutet av den första eller början av den andra strängen. </p>
+        <br>
+        <p>Att plustecken fungerar olika på olika typer kan bli förvirrande och leda till fel, ta detta som exempel:</p>
+        <code>let myNum = 10;
+           <br> let myString = "10"
+           <br> let result = myNum + myString
+            </code>
+        <p>När du tittar på detta kanske du tror att resultatet blir 20, det är fel, resultatet blir “1010”. Det som händer är att om en av variablerna är en string och du använder plustecken så tror javascript att allt ska bli string. 
+            Så den tänker på det som text och inte siffror och sätter ihop dem.</p>
+
+        <h2 id="func">Javascripts string funktioner</h2>
+        
+        <p>I funktioner kapitlet så nämnde jag att javascript har många standardfunktioner som du kan använda. Det finns många som används för att hantera strings. Här är en lista på några som är bra att kunna:</p>
+        <ul>
+            <li>toUpperCase() - omvandlar text till stora bokstäver</li>
+            <li>toLowerCase() - omvandlar text till små bokstäver</li>
+            <li>substr() - hämtar ut en del av en string</li>
+            <li>replace() - ersätter en del av en string med en annan string</li>
+        </ul>
+        <p>En full lista av javascripts string funktioner kan du hitta här: </p>
+        <a href="https://www.w3schools.com/jsref/jsref_obj_string.asp">https://www.w3schools.com/jsref/jsref_obj_string.asp</a>
+        <br>
+        <p>Du använder dessa funktioner genom att skriva variabel namnet, sedan en punkt och sedan funktion namnet. Här är ett exempel:</p>
+        <code>let myString = "Hejsan Världen"
+            <br>let upperString = myString.toUpperCase();
+            <br>//värdet på upperString blir "HEJSAN VÄRLDEN"
+            </code>
+        <p>Denna funktionen <b>toUpperCase()</b> behöver ingen extra data(parameter) så därför är parenteserna tumma. Här är ett exempel på en funktion som behöver parameter:</p>
+        <code>let myString = "Hejsan Världen"
+            <br>let extractedString = myString.substr(7)
+            <br>//värdet på extractedString blir "Världen"
+        </code>
+        <p>I detta exempel så hämtar vi ut en del av vår string, den parameter vi skickar med är var vi ska börja hämta från. Så vi börjar hämta från tecken nummer 7 och hämtar resten av texten så vi får “världen”. (Vissa funktioner börjar räkna från 0 istället för 1 vilket kan bli förvirrande)</p>
+        
+      
+
+       
+        <h2 id="extra">Frivillig extra läsning</h2>
+
+        <p>Här kan du gå djupare in i detta kapitlet om du vill:</p>
+
+        <a href="https://www.w3schools.com/jsref/jsref_obj_string.asp">https://www.w3schools.com/jsref/jsref_obj_string.asp</a>
+
+        <br> <a href="https://www.freecodecamp.org/news/javascript-string-tutorial-string-methods-in-js/">https://www.freecodecamp.org/news/javascript-string-tutorial-string-methods-in-js/</a>
+
+        <br> <a href="https://javascript.info/string">https://javascript.info/string</a>
+
+        <h2 id="testa">Testa själv</h2>
+        <p>Nu är det din tur att testa själv. Du kan skriva din kod här under och det finns även en konsol som du kan skriva ut till
+<p>Testa följande utmaningar:</p>
+<ol>
+    <li>Skapa en variabel som är två strängar ihopsatta</li>
+    <li>Lägg längden av din variabel i en ny variabel</li>
+    <li>Skapa en string och omvandla sedan alla bokstäver till små bokstäver</li>
+</ol>
+        <textarea id="code-editor"></textarea>
+        <button id="run-button">Run Code</button>
+        <div id="output"></div>
+    </main>
+    <br>
+    <nav>
+        <a href="intro.html">Intro</a> 
+        <a href="variablar.html">Variablar</a> 
+        <a href="funktioner.html">Funktioner</a> 
+        <a href="integer.html">Integer</a>
+        <a href="string.html">String</a>
+        <a href="if-else.html">If Else</a>
+        <a href="loops.html">Loops</a>
+        <a href="html.html">HTML</a>
+        <a href="events.html">Events</a>
+      </nav>
+
+    <script src="scripts/codeEditor.js"></script>
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            const editor = new CodeEditor("code-editor", {
+                outputId: "output",
+                runButtonId: "run-button"
+            });
+            editor.setValue(`//Skapa en variabel som är två strängar ihopsatta\n\n//Få längden av en string\n\n//Omvandla till små bokstäver`);
+
+        });
+    </script>
+</body>
+</html>

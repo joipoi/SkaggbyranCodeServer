@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Javascript och HTML</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.62.0/codemirror.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.62.0/theme/monokai.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.62.0/codemirror.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.62.0/mode/javascript/javascript.min.js"></script>
+    <link rel="stylesheet" href="styles/main.css">
+</head>
+<body>
+    
+    <main>
+        <h1>Javascript och HTML</h1>
+
+        <ul>
+            <li><a href="#html">HTML</a></li>
+            <li><a href="#anvanda">Börja använda javascript på riktigt</a></li>
+            <li><a href="#hitta">Hitta html element</a></li>
+            <li><a href="#andra">Ändra html element</a></li>
+            <li><a href="#extra">Frivillig extra läsning</a></li>
+            <li><a href="#testa">Testa själv</a></li>
+     
+        </ul>
+
+        <h2 id="html">HTML</h2>
+
+        <p>För denna guide antar jag att du har en idé om hur HTML fungerar men om du inte har det kan jag sammanfatta snabbt. HTML används på alla hemsidor för att strukturera sidan. HTML är egentligen inte ett programmeringsspråk, det är ett språk som bara definierar element och var de ligger. Du använder taggar för att definiera element som text, bilder, rubriker, länkar och mer. En tagg kan se ut så här:</p>
+        <code><p>text här</p></code>
+        <p>HTML element kan ha id och klasser vilket man använder för att identifiera eller gruppera dem. Du kommer använda id och klasser i din javascript kod för att bestämma vilka html element du vill påverka. När du använder Javascript kommer du ofta att jobba med html element så det behövs grundläggande kunskap om html.</p>
+
+        <h2 id="anvanda">Börja använda javascript på riktigt</h2>
+
+        <p>Nu när du har lärt dig lite javascript så är det dags att faktiskt använda det i praktiken. För att använda Javascript behöver du ha en HTML fil redo. Du kan koppla din javascript kod till html filen på två sätt.</p>
+        <ol>
+            <li><b>Script taggar</b> - Du kan använda en specifik html tag för att ha med javascript kod i filen. Detta är bäst om du inte har så mycket kod. Den ser ut så här:
+                <br><code> &#60;script> //javascript kod här &#60;/script> </code></li>
+            <li><b>Script länk</b> - Du kan också länka till en Javascript fil från din html fil. Detta låter dig ha det separat vilket kan göra det enklare att hålla koll på. Om din fil heter myScript.js så länkar du så här: 
+                <br><code>&#60;script src="myScript.js">&#60;/script></code>
+                </li>
+        </ol>
+        <h2 id="hitta">Hitta html element</h2>
+        <p>För att hitta html element brukar man oftast använda id eller klasser, ibland kan man använda vilken tagg typ det är. Dessa funktioner är alla bra att veta:</p>
+        <ul>
+            <li><b>document.getElementById(id)</b> - Letar efter ett html element som matchar id du ger som parameter, ger aldrig mer än ett element.</li>
+            <li><b>document.getElementsByClassName(name)</b> - Letar efter html element som matchar klass namn du ger, kan ge tillbaka flera html element som en array.</li>
+            <li><b>document.getElementsByTagName(name)</b> - Letar efter html element som matchar tag namn du ger, kan ge tillbaka flera html element som en array.</li>
+        </ul>
+        <p>Du kan sedan sätta dessa i en variabel och om det är en array kan du behöva loopa igenom och göra något med varje html element.</p>
+
+        <h2 id="andra">Ändra html element</h2>
+
+        <p>Alla html element har en stor mängd attribut som man kan påverka med javascript. Det kan vara allt från text, storlek på text, länken till en bild, färgen på en rubrik och mycket mer. Olika sorters element kan ha olika sorters attribut. Du kan ändra ett html element antigen direkt från en av funktionerna ovan eller spara det till en variabel och ändra från där. Du gör detta med en punkt och sedan namnet på attributet, här är två exempel:</p>
+        <code>//använder funktionen direkt
+            <br>document.getElementById("myElem").height = 200; 
+            <br>//använder en variabel
+            <br>let myElem = document.getElementById("myElem");
+            <br>myElem.height = 200;
+        </code>
+        <p>Både dessa två sätten kommer att göra samma sak, det handlar bara om du vill ha en variabel eller inte, vilket du oftast vill. Det finns väldigt många attribut och jag kan inte lista alla, men här är några viktiga:</p>
+        <ul>
+            <li><b>innerHTML/innerText/textContent/value</b> - Detta är 4 olika attribut som ger väldigt liknande data. De ger alla texten som ett element har på ett eller annat sätt. Du behöver inte veta exakt vad alla gör, jag brukar oftast använda innerHTML och value.</li>
+            <li><b>children</b> - Ger dig alla "children" av html elementet, om du kan html vet du vad detta är. Det är andra element som typ ligger under detta element</li>
+            <li><b>id/class</b> - Du kan ändra id och klass också om du vill</li>
+            <li><b>src</b> - Används ofta på bilder för att få länken till bilden</li>
+            <li><b>href</b> - Används för länkar för att få var länken tar dig</li>
+        </ul>
+        <h3>Ändra Stil</h3>
+        <p>Vissa attribut ligger under ett stil attribut så för att ändra dessa måste du gå igenom stil attributet först. Här är ett exempel:</p>
+        <code>//ändra färg på html element
+            <br>let myElem = document.getElementById("myElem");
+            <br>myElem.style.color = "red";
+        </code>
+        <p>Detta är oftast saker du hade ändrat med CSS, det kan vara svårt att komma ihåg vilka saker räknas som stil men Google är din vän här.</p>
+       
+        <h2 id="extra">Frivillig extra läsning</h2>
+
+        <p>Här kan du gå djupare in i detta kapitlet om du vill:</p>
+
+        <a href="https://www.w3schools.com/tags/ref_attributes.asp">https://www.w3schools.com/tags/ref_attributes.asp</a>
+
+        <br> <a href="https://www.w3schools.com/js/js_htmldom.asp">https://www.w3schools.com/js/js_htmldom.asp</a>
+
+        <br> <a href="https://www.w3schools.com/js/js_htmldom_document.asp">https://www.w3schools.com/js/js_htmldom_document.asp</a>
+
+        <h2 id="testa">Testa själv</h2>
+        <p>Nu är det din tur att testa själv. Du kan skriva din kod här under och det finns även en konsol som du kan skriva ut till
+<p>Testa följande utmaningar:</p>
+<ol>
+    <li>Skapa en variabel som håller datan för html elementet nedan som har id "textElem"</li>
+    <li>Använd innerHTML för att skriva ut till konsollen texten som html elementet har</li>
+    <li>Ändra värdet på innerHTML attributet för detta element</li>
+    <li>Ändra färgen på samma element</li>    
+</ol>
+        <textarea id="code-editor"></textarea>
+        <button id="run-button">Run Code</button>
+        <p id="textElem">Detta är ett HTML element med id "textElem"</p>
+        <div id="output"></div>
+    </main>
+    <br>
+    <nav>
+        <a href="intro.html">Intro</a> 
+        <a href="variablar.html">Variablar</a> 
+        <a href="funktioner.html">Funktioner</a> 
+        <a href="integer.html">Integer</a>
+        <a href="string.html">String</a>
+        <a href="if-else.html">If Else</a>
+        <a href="loops.html">Loops</a>
+        <a href="html.html">HTML</a>
+        <a href="events.html">Events</a>
+      </nav>
+    <script src="scripts/codeEditor.js"></script>
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            const editor = new CodeEditor("code-editor", {
+                outputId: "output",
+                runButtonId: "run-button"
+            });
+            editor.setValue(`//Skapa din variabel som håller html elementet\n\n//Skriv ut innerHTML till konsol\n\n //Ändra värdet på innerHTML, konsollen kommer inte ändras, men elementet ändras\n\n //Ändra färg, kom ihåg att detta är ett style attribut`);
+
+        });
+    </script>
+</body>
+</html>

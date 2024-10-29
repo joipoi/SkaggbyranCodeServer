@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Funktioner</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.62.0/codemirror.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.62.0/theme/monokai.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.62.0/codemirror.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.62.0/mode/javascript/javascript.min.js"></script>
+    <link rel="stylesheet" href="styles/main.css">
+</head>
+<body>
+    
+    <main>
+        <h1>Funktioner</h1>
+
+        <ul>
+            <li><a href="#vad">Vad är en funktion?</a></li>
+            <li><a href="#skapa">Skapa en funktion</a></li>
+            <li><a href="#anvand">Använda en funktion</a></li>
+            <li><a href="#parameter">Parameter</a></li>
+            <li><a href="#standard">Javascript standard funktioner</a></li>
+            <li><a href="#extra">Frivillig extra läsning</a></li>
+            <li><a href="#testa">Testa själv</a></li>
+     
+        </ul>
+
+        <h2 id="vad">Vad är en funktion?</h2>
+        <p>Du vet nu att en variabel är data som vi har gett ett namn så vi kan använda det senare, man kan säga att en funktion är javascript kod som vi ger namn så vi kan använda det senare. </p>
+        <p>En funktion tar in data, gör någonting med den och sedan ger tillbaka data. Ibland så kommer en funktion inte att ge tillbaka någon data, man har den bara för att göra något och får ingen data tillbaka.</p>
+        <p>Ibland kan du märka att funktioner kallas istället metoder(methods), det finns små skillnader på metoder och funktioner men du kan tänka på dem som nästan samma sak.</p>
+
+        <h2 id="skapa">Skapa en funktion</h2>
+        
+        <p>Här är ett exempel på att skapa en javascript funktion som adderar 10 till ett nummer:</p>
+        <code>function addTen(myNumber) {
+           <br> let myResult = myNumber + 10;
+            <br>return myResult;
+        <br>}
+        </code>
+        <p>I detta exempel så är <b>myNumber</b> den data som funktionen tar in och <b>myResult</b> är den data som skickas ut. Man använder retur för att säga vad som ska skickas ut eller som "returneras".
+          <br>  All kod i en funktion är inom dessa tecken som kallas “curly brackets”: <b>{kod här}</b>. </p>
+
+        <h2 id="anvand">Använda en funktion</h2>
+
+          <p>Låt oss säga vi vill använda den funktionen vi skapade ovan som heter addTen, det gör man så här:</p>
+          <code>addTen(5); </code>
+          <p>Det vi skriver inom parenteser är den data som vi skickar till funktionen. I vårt exempel ovan så hette det <b>myNumber</b>. 
+           <br> Problemet med att använda funktionen så här är att den data vi får tillbaka kommer inte användas till något, om din funktion ger data så borde du oftast använda den på 
+            något sätt. Du kan till exempel skapa en variabel för datan, det ser ut så här:
+        </p>
+        <code>let myVariable = addTen(5);</code>
+        <p>På detta sätt kommer datan från funktionen att sparas i en variabel och vi kan använda den senare. I vårt fall kommer vår variable ha värdet 15 eftersom vi tar 5 och lägger till 10.</p>
+
+        <h2 id="parameter">Parameter</h2>
+
+        <p>Den data som skickas till en funktion kallas antingen parameter eller argument. En funktion kan ha flera parameters/arguments. I vårt exempel ovan så är myNumber vår parameter. 
+           <br> Du säger hur många parameter en funktion ska ha när du skapar den, du ger dem namn med ett komma mellan varje, så här:</p>
+        <code>Function myFunc(param1, param2, param3){
+            <br>Code here
+            <br>}
+        </code>
+        <p>När du sedan vill använda funktionen så behöver du ha med lika många paramter som du hade när du skapade den. Så för att använda myfunc så kan du skriva</p>
+        <code>myFunc(15, 30, 45);</code>  
+        <p>Då kommer param1 ha värdet 15, param2 ha värdet 30 och param3 ha värdet 45.</p>  
+
+
+        <h2 id="standard">Javascript standard funktioner</h2>
+        
+        <p>Javascript har flera funktioner som redan finns i språket och som du kan använda i din kod. Du kommer lära dig flera av dessa senare i guiden och de används ofta. </p>
+
+        <p>Det finns väldigt många standardfunktioner och jag kan inte lista dem alla, men du kan känna igen att någonting är en funktion baserat på hur de ser ut.
+           <br>  Som du lärde dig ovan används en funktion med sitt namn och parenteser så om du ser det här: <code>filter()</code> så vet du att det är en
+             funktion även om du inte vet vad den gör. 
+             <br>Du hade då kunnat gå till google och skriva <b>javascript filter function</b> och lärt dig mer.</p>
+
+        <h2 id="extra">Frivillig extra läsning</h2>
+
+        <p>Här kan du gå djupare in i detta kapitlet om du vill:</p>
+
+        <a href="https://www.w3schools.com/js/js_functions.asp">https://www.w3schools.com/js/js_functions.asp</a>
+
+        <br> <a href="https://javascript.info/function-basics">https://javascript.info/function-basics</a>
+
+        <br> <a href="https://www.tutorialspoint.com/javascript/javascript_builtin_functions.htm">https://www.tutorialspoint.com/javascript/javascript_builtin_functions.htm</a>
+
+        <h2 id="testa">Testa själv</h2>
+        <p>Nu är det din tur att testa själv. Du kan skriva din kod här under och det finns även en konsol som du kan skriva ut till
+<p>Testa följande utmaningar:</p>
+<ol>
+<li>Skapa en funktion som tar in och skickar ut data</li>
+<li>Skapa en variabel som tar emot datan som funktionen skickar</li>
+<li>Skriv ut variabeln till konsolen</li>
+</ol>
+        <textarea id="code-editor"></textarea>
+        <button id="run-button">Run Code</button>
+        <div id="output"></div>
+    </main>
+    <br>
+    <nav>
+        <a href="intro.html">Intro</a> 
+        <a href="variablar.html">Variablar</a> 
+        <a href="funktioner.html">Funktioner</a> 
+        <a href="integer.html">Integer</a>
+        <a href="string.html">String</a>
+        <a href="if-else.html">If Else</a>
+        <a href="loops.html">Loops</a>
+        <a href="html.html">HTML</a>
+        <a href="events.html">Events</a>
+      </nav>
+
+    <script src="scripts/codeEditor.js"></script>
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            const editor = new CodeEditor("code-editor", {
+                outputId: "output",
+                runButtonId: "run-button"
+            });
+            editor.setValue(`//Skapa en funktion, kom ihåg att använda parantes för parameters och använd return för att skicka tillbaka data \n\n //Skapa en variabel som får data från funktionen \n\n //Skriv ut variabeln till konsolen`);
+
+        });
+    </script>
+</body>
+</html>

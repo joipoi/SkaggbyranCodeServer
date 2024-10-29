@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>If-Else</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.62.0/codemirror.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.62.0/theme/monokai.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.62.0/codemirror.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.62.0/mode/javascript/javascript.min.js"></script>
+    <link rel="stylesheet" href="styles/main.css">
+</head>
+<body>
+    
+    <main>
+        <h1>If-Else</h1>
+
+        <ul>
+            <li><a href="#vad">Vad är if-else</a></li>
+            <li><a href="#jamfora">Jämföra värde</a></li>
+            <li><a href="#else-if">If-Else</a></li>
+            <li><a href="operators">Logical Operators</a></li>
+            <li><a href="#extra">Frivillig extra läsning</a></li>
+            <li><a href="#testa">Testa själv</a></li>
+     
+        </ul>
+
+        <h2 id="vad">Vad är if-else</h2>
+        <p>Det är vanligt i programmering att man vill köra någon kod beroende på ett vilkor. Man kanske vill köra någon kod om en siffra är högre än 100 eller om en text matchar ett specifikt ord.
+            Detta kan man göra med if-else, tänk på det som att säga om(if) denna saken händer gör detta, annars(else) gör en annan sak.
+           <br> Här är ett exempel på if-else kod:
+            </p>
+            <code>if(myNum == 10){
+               <br> console.log("Ditt nummer är 10");
+               <br> }else{
+                   <br> console.log("Ditt nummer är inte 10");
+                <br>}
+            </code>
+            <p>Med denna kod kollar vi om variabeln myNum har värdet 10, sedan skriver vi ut text beroende på om det är sant eller inte. Koden i parentesen är det vi kollar om det är sant och koden inom dessa <b>{}</b> är där koden är för om det är sant.
+                <br>Du kanske undrar varför vi har två likhetstecken, det lär du dig om i nästa del
+                </p>
+        
+            
+
+        <h2 id="jamfora">Jämföra värde</h2>
+        <p>Det finns flera sätt du kan jämföra värde som du kan använda i din if-else kod, här är en lista med vilka tecken du använder:</p>
+
+        <ul>
+            <li><b>==</b>  Jämför om två värden är samma</li>
+            <li><b>===</b> Nästan samma som ovan men det kollar också om typerna är samma, det behöver du oftast inte använda</li>
+            <li><b>!=</b>  Jämför om två värden <b>inte</b> är samma</li>
+            <li><b>></b>   Kollar om första värdet är större än andra värdet</li>
+            <li><b><</b>   Kollar om första värdet är mindre än andra värdet</li>
+            <li><b>>=</b>  Kollar om först värdet är större eller lika med andra värdet</li>
+        </ul>
+        <p>Anledningen till att vi använder två likhetstecken är eftersom ett likhetstecken är det vi använder när vi skapar variabler och annat så det är redan taget. Detta är viktigt att komma ihåg, om du använder bara ett i din if-else kod kan det bli helt fel.</p>
+
+        <h2 id="else-if">Else if</h2>
+        <p>Det är möjligt att du vill kolla om någonting är sant och sedan kolla om någonting annat är sant, detta kan du göra med <b>else if</b>. Här är ett exempel:</p>
+        <code>if(myNum > 10){
+           <br> console.log("Din siffra är över 10");
+           <br> }else if(myNum < 10){
+            <br>   console.log("Din siffra är under 10");
+            <br>}else{
+            <br>    console.log("Din siffra är exakt 10");
+           <br> }
+            </code>
+        <p>Här kollar vi först om vår variabel är över 10, sedan om det inte är sant så kollar vi i vår else-if om vår variabel är under 10. Om båda dessa två är falskt, då går vi  till vår else och vi vet att siffran är exakt 10. </p>
+        <p>Denna koden hade kunnat vara fel eftersom det är möjligt att vår variabel inte ens är en siffra, då kommer vår if vara falsk och vi skriver att siffran är 10, vilket då är fel. Du hade kunnat fixa detta genom att lägga till en till else if som kollar om siffran är lika med 10.</p>
+        
+       <h2 id="operators">Logical Operators</h2>
+        <p>Ibland behöver man lite extra när man kollar om någonting är sant, då kan du använda dessa tecken:</p>
+
+        <ul>
+            <li><b>&&</b> - Med detta kan du kolla om mer än en sak är sant, skriv dessa mellan två påstående och om både är sant så räknas det som sant, om bara ett är sant räknas det som falskt</li>
+            <li><b>||</b> - Dessa är liknande men här behöver bara ett påstående vara sant för att det ska räknas som sant.</li>
+            <li><b>!</b> - Detta gör att du får motsatt resultat till vad det var innan, så sant blir falskt och falskt blir sant.</li>
+        </ul>
+        <p>Här är lite exempel:</p>
+        <code>if(myNum > 10 && myNum < 30){
+           <br> console.log(“nummer är mer än 10 och mindre än 30”);
+        <br>}
+        </code>
+        <code>if(myNum > 10 || mySecondNum > 10){
+            <br>console.log("åtminstonde ett av mina nummer är över 10 ”);
+        <br>}
+        </code>
+        <code>if(!myNum > 10){
+            <br>console.log(“Mitt nummer är INTE mer än 10”);
+        <br>}
+        </code>
+        <p>Du kan kombinera dessa på många olika sätt och du kan ha med matematik du lärde dig innan. Du kan vara mycket kreativ. Man kan använda parenteser för att separate om det blir för mycket, t:ex</p>
+        <code>if( (myNum > 10 && myNum < 30) || !(myNum == 10) )</code>
+
+
+        <h2 id="extra">Frivillig extra läsning</h2>
+
+        <p>Här kan du gå djupare in i detta kapitlet om du vill:</p>
+
+        <a href="https://www.w3schools.com/js/js_if_else.asp">https://www.w3schools.com/js/js_if_else.asp</a>
+
+        <br><a href="https://www.w3schools.com/js/js_comparisons.asp">https://www.w3schools.com/js/js_comparisons.asp</a>
+
+        <h2 id="testa">Testa själv</h2>
+        <p>Nu är det din tur att testa själv. Du kan skriva din kod här under och det finns även en konsol som du kan skriva ut till
+<p>Testa följande utmaningar:</p>
+<ol>
+    <li>Skriv if-else kod som kollar om en sträng är lika med "hejsan"</li>
+    <li>Skriv if-else kod som först kollar om en siffra är mer en 10 och sedan kollar om en sträng är lika med hejsan</li>
+    <li>Skriv if-else kod som kollar om en siffra multiplicerade med 10 är mer än 50</li>    
+    <li>Skriv if-else kod som kollar om längden på en sträng är längre än 10</li>
+</ol>
+        <textarea id="code-editor"></textarea>
+        <button id="run-button">Run Code</button>
+        <div id="output"></div>
+    </main>
+    <br>
+    <nav>
+        <a href="intro.html">Intro</a> 
+        <a href="variablar.html">Variablar</a> 
+        <a href="funktioner.html">Funktioner</a> 
+        <a href="integer.html">Integer</a>
+        <a href="string.html">String</a>
+        <a href="if-else.html">If Else</a>
+        <a href="loops.html">Loops</a>
+        <a href="html.html">HTML</a>
+        <a href="events.html">Events</a>
+      </nav>
+
+    <script src="scripts/codeEditor.js"></script>
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            const editor = new CodeEditor("code-editor", {
+                outputId: "output",
+                runButtonId: "run-button"
+            });
+            editor.setValue(`//Kolla om sträng har värdet "hejsan"\n\n //Kolla om siffra är mer än 10 och sedan om sträng är lika med hejsan \n\n //Kolla om siffra multiplicerad med 10 är mer än 50 \n\n//Kolla om längden på en sträng är längre än 10, läs string kaptiltet om du fastnar\n\n `);
+
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Integer</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.62.0/codemirror.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.62.0/theme/monokai.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.62.0/codemirror.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.62.0/mode/javascript/javascript.min.js"></script>
+    <link rel="stylesheet" href="styles/main.css">
+</head>
+<body>
+    
+    <main>
+        <h1>Integer</h1>
+
+        <ul>
+            <li><a href="#vad">Vad är en Integer?</a></li>
+            <li><a href="#aritmetik">Aritmetik</a></li>
+            <li><a href="#extra">Frivillig extra läsning</a></li>
+            <li><a href="#testa">Testa själv</a></li>
+     
+        </ul>
+
+        <h2 id="vad">Vad är en integer</h2>
+        <p>I denna delen går vi in djupare på variabel typen som heter int. Som jag nämnde tidigare är detta heltal, positiva eller negativa, upp till  ungefär 2 miljarder. 
+            Detta är en väldigt vanlig variabel typ som man kan använda för att sätta ett värde på något eller räkna något. </p>
+            
+
+        <h2 id="aritmetik">Aritmetik</h2>
+        
+        <p>Det är vanligt att du vill göra lite enkel matematik med dina nummer, det kan du göra så här:</p>
+        <ul>
+            <li>Multiplikation: 5 * 5</li>
+            <li>Subtraktion: 5 - 5</li>
+            <li>Addition: 5 + 5</li>
+            <li>Division: 5 / 5</li>
+        </ul>
+        <p>Detta kan du använda med dina variabler, det kan se ut så här:</p>
+        <code>let myNum = 3+2;
+        <br> let newNum = myNum + 10;
+        <br>let anotherNum = newNum - myNum;
+        </code>
+        <p>Du kan också göra ändring på en variabel:</p>
+        <code>let myNum = 3+2;
+            <br>myNum = myNum + 10;
+        </code>
+        <p>Du kan skriva detta på ett annat sätt:</p>
+        <code>let myNum = 3+2;
+           <br> myNum += 10;
+            </code>
+        <p>Detta ger samma resultat som ovan men kan vara snyggare eller snabbare.</p>
+        <p>Ett extra trick att kunna är ett snabbt sätt att öka med 1 eller minska med 1:</p>
+        <code>myNum++; //Detta ökar myNum med ett
+            <br>myNum--; //Detta minskar myNum med ett
+            </code>
+<p>Detta kommer vara användbart i det framtida kapitel som heter "loops"</p>
+        <p>Du kanske märker att om man tar t:ex 5/2 så får man inte ett heltal, vilket betyder att det inte är en integer. 
+            Det blir istället en typ som heter float. Detta kommer du inte märka eftersom javascript inte kräver att du skriver
+        typer, men det är bra att veta att i bakgrunden är det en annan typ av variabel </p>
+
+       
+        <h2 id="extra">Frivillig extra läsning</h2>
+
+        <p>Här kan du gå djupare in i detta kapitlet om du vill:</p>
+
+        <a href="https://www.w3schools.com/Js/js_numbers.asp">https://www.w3schools.com/Js/js_numbers.asp</a>
+
+        <br> <a href="https://www.w3schools.com/Js/js_arithmetic.asp">https://www.w3schools.com/Js/js_arithmetic.asp</a>
+
+        <h2 id="testa">Testa själv</h2>
+        <p>Nu är det din tur att testa själv. Du kan skriva din kod här under och det finns även en konsol som du kan skriva ut till
+<p>Testa följande utmaningar:</p>
+<ol>
+    <li>Sätt värdet för en variabel genom att använda addition</li>
+    <li>Sätt värdet för en variabel genom att använda division</li>
+    <li>Ök värdet på en av dina variabler med 10</li>
+    <li>Skriv ut resultat av dina variabler multiplicerade med varandra</li>    
+</ol>
+        <textarea id="code-editor"></textarea>
+        <button id="run-button">Run Code</button>
+        <div id="output"></div>
+    </main>
+    <br>
+    <nav>
+        <a href="intro.html">Intro</a> 
+        <a href="variablar.html">Variablar</a> 
+        <a href="funktioner.html">Funktioner</a> 
+        <a href="integer.html">Integer</a>
+        <a href="string.html">String</a>
+        <a href="if-else.html">If Else</a>
+        <a href="loops.html">Loops</a>
+        <a href="html.html">HTML</a>
+        <a href="events.html">Events</a>
+      </nav>
+
+    <script src="scripts/codeEditor.js"></script>
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            const editor = new CodeEditor("code-editor", {
+                outputId: "output",
+                runButtonId: "run-button"
+            });
+            editor.setValue(`//Addition\n\n //Division \n\n //Öka med 10, kom ihåg det finns 2 sätt att göra detta \n\n //Skriv ut variabler multiplicerade med varandra`);
+
+        });
+    </script>
+</body>
+</html>
