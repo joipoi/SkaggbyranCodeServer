@@ -2,6 +2,11 @@
 // login.php
 
 session_start();
+echo '<p> <a href="index.php">Upload A Project</a> | <a href="projects.php">View All Projects</a> | <a href="login.php">Login</a> | <a href="register.php">Register</a>  ';
+if (isset($_SESSION['username'])) {
+    echo '| <a href="logout.php">Logout</a>'; // Logout link
+}
+echo '</p>';
 
 $servername = getenv('DB_SERVER');
 $db_username = getenv('DB_USER');

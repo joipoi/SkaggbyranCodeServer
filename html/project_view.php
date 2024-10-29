@@ -1,8 +1,11 @@
 <?php
 echo ' <p> <a href="index.php">Upload A Project</a> | <a href="projects.php">View All Projects</a> | <a href="login.php">Login</a> | <a href="register.php">Register</a>  </p>';
 if (isset($_GET['user']) && isset($_GET['project'])) {
-    $username = $_GET['user'];
-    $projectName = $_GET['project'];
+
+$username = isset($_GET['user']) ? urlencode($_GET['user']) : 'guest';
+$projectName = isset($_GET['project']) ? urlencode($_GET['project']) : 'defaultProject';
+
+
     $directory = "uploads/$username/$projectName/";
 
     if (is_dir($directory)) {
@@ -33,6 +36,12 @@ if (isset($_GET['user']) && isset($_GET['project'])) {
     } else {
         echo "No files found for user $username in project $projectName.";
     }
+
+// Add link to delete the project
+if ($username === 'guest' || (isset($_SESSION['username']) && $_SESSION['username'] === $user)) {
+    echo "<p><a href='delete_project.php?user=" . urlencode($username) . "&project=" . urlencode($projectName) . "' onclick='return confirm(\"Are you sure you want to delete this project?\");'>Delete Project</a></p>";
+}
+
 } else {
     echo "No user or project specified.";
 }

@@ -32,6 +32,6 @@ session_start();
         </form>
     <?php endif; ?>
 
-    <p><a href="login.php">Login</a> | <a href="register.php">Register</a> | <a href="projects.php">View All Projects</a></p>
+    <p><a href="login.php">Login</a> | <a href="register.php">Register</a> | <a href="projects.php">View All Projects</a> | <a href="logout.php">Logout</a> </p>
 </body>
 </html>
