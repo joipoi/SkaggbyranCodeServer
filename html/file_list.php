@@ -1,31 +1,53 @@
 <?php
 // file_list.php
-echo ' <p> <a href="index.php">Upload A Project</a> | <a href="projects.php">View All Projects</a> | <a href="login.php">Login</a> | <a href="register.php">Register</a>  </p>';
-if (isset($_GET['user']) && isset($_GET['project'])) {
-    $username = preg_replace('/[^a-zA-Z0-9_-]/', '', $_GET['user']);
-    $projectName = preg_replace('/[^a-zA-Z0-9_-]/', '', $_GET['project']);
-    $directory = "uploads/$username/$projectName/";
 
-    if (is_dir($directory)) {
-        echo "<h1>Files in Project: $projectName</h1>";
-        $files = glob($directory . '*');
+// Sanitize input
+$username = isset($_GET['user']) ? preg_replace('/[^a-zA-Z0-9_-]/', '', $_GET['user']) : null;
+$projectName = isset($_GET['project']) ? preg_replace('/[^a-zA-Z0-9_-]/', '', $_GET['project']) : null;
+$directory = "uploads/$username/$projectName/";
 
-        if (empty($files)) {
-            echo "<p>No files found in this project.</p>";
-        } else {
-            echo "<ul>";
-            foreach ($files as $file) {
-                if (is_file($file)) {
-                    $fileName = basename($file);
-                    echo "<li><a href='$file' target='_blank'>" . htmlspecialchars($fileName) . "</a> - <a href='view_file.php?user=" . urlencode($username) . "&project=" . urlencode($projectName) . "&file=" . urlencode($fileName) . "'>View Contents</a></li>";
-                }
-            }
-            echo "</ul>";
-        }
-    } else {
-        echo "No files found for user $username in project $projectName.";
-    }
-} else {
-    echo "No user or project specified.";
-}
 ?>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>File List</title>
+    <link rel="stylesheet" href="styles.css"> <!-- Link to a CSS file if needed -->
+</head>
+<body>
+
+    <nav>
+        <p>
+            <a href="index.php">Upload A Project</a> | 
+            <a href="projects.php">View All Projects</a> | 
+            <a href="login.php">Login</a> | 
+            <a href="register.php">Register</a>
+        </p>
+    </nav>
+
+    <?php if ($username && $projectName && is_dir($directory)): ?>
+        <h1>Files in Project: <?= htmlspecialchars($projectName) ?></h1>
+        <?php
+        $files = glob($directory . '*');
+        if (empty($files)): ?>
+            <p>No files found in this project.</p>
+        <?php else: ?>
+            <ul>
+                <?php foreach ($files as $file): ?>
+                    <?php if (is_file($file)): ?>
+                        <?php $fileName = basename($file); ?>
+                        <li>
+                            <a href="<?= htmlspecialchars($file) ?>" target="_blank"><?= htmlspecialchars($fileName) ?></a> - 
+                            <a href="view_file.php?user=<?= urlencode($username) ?>&project=<?= urlencode($projectName) ?>&file=<?= urlencode($fileName) ?>">View Contents</a>
+                        </li>
+                    <?php endif; ?>
+                <?php endforeach; ?>
+            </ul>
+        <?php endif; ?>
+    <?php else: ?>
+        <p>No user or project specified, or no files found for user <?= htmlspecialchars($username) ?> in project <?= htmlspecialchars($projectName) ?>.</p>
+    <?php endif; ?>
+
+</body>
+</html>
