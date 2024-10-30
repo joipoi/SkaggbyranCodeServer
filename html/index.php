@@ -26,8 +26,8 @@ session_start();
 	<form action="upload.php" method="POST" enctype="multipart/form-data">
 <label for="projectname">Enter Your Project Name:</label>
 <input type="text" name="projectname" required> <br>
-            <input type="hidden" name="username" value="guest">
-            <input type="file" name="files[]" webkitdirectory multiple required>
+	    <input type="hidden" name="username" value="guest">
+<input type="file" name="files[]" multiple required>
             <input type="submit" value="Upload as Guest">
         </form>
     <?php endif; ?>

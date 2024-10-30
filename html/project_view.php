@@ -37,6 +37,9 @@ $projectName = isset($_GET['project']) ? urlencode($_GET['project']) : 'defaultP
         echo "No files found for user $username in project $projectName.";
     }
 
+// Add link to download the project
+    echo "<p><a href='download_project.php?user=" . urlencode($username) . "&project=" . urlencode($projectName) . "'>Download Project</a></p>";
+
 // Add link to delete the project
 if ($username === 'guest' || (isset($_SESSION['username']) && $_SESSION['username'] === $user)) {
     echo "<p><a href='delete_project.php?user=" . urlencode($username) . "&project=" . urlencode($projectName) . "' onclick='return confirm(\"Are you sure you want to delete this project?\");'>Delete Project</a></p>";
