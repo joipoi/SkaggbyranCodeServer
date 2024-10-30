@@ -3,6 +3,7 @@ This project lets users upload projects consisting of html, css, javascript and 
 These projects are then  hosted on a raspberry pi currently at "Skäggbyrån".
 ## Download
 You can download this project as a zip file by pressing the green button that says "Code" and then clicking "Download ZIP".
+
 You can also download it with git by running "git clone https://github.com/joipoi/upload.git"
 ## Files
 - index.php: This file is where the user can upload projects to the server
