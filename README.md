@@ -6,6 +6,9 @@ You can download this project as a zip file by pressing the green button that sa
 
 You can also download it with git by running "git clone https://github.com/joipoi/upload.git"
 ## Files
+
+### Can be accessed/has html
+
 - index.php: This file is where the user can upload projects to the server
 - login.php: This file is where the user can login if they have an account
 - register.php: This filer is where the user can Register a new account
@@ -13,10 +16,16 @@ You can also download it with git by running "git clone https://github.com/joipo
 - project_view.php: This file is where you can see a specific project
 - file_list.php: This file is where you can see a list of all the files in a project
 - upload.php: This file handles the request from the user to upload their project
+- edit_file.php: This file handles editing a file in a project
+
+
+### Only for handling post requests
+
 - delete_file.php: this file handles deleting a file
 - delete_project.php: This file handles deleting an entire project
-- edit_file.php: This file handles editing a file in a project
 - logout.php: This file handles a request to logout
+- download_project.php: This file handles a request to download a project
+
 ## Good to know
 
 ### PHP Sessions
