@@ -12,6 +12,13 @@ $file_list_link = "file_list.php?user=$user&project=$project";
 <!DOCTYPE html>
 <html lang="en">
 <head>
+<!-- Include Highlight.js CSS -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.5.1/styles/default.min.css">
+
+<!-- Include Highlight.js JavaScript -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.5.1/highlight.min.js"></script>
+<script>hljs.highlightAll();</script>
+
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>View File</title>
@@ -39,8 +46,11 @@ $file_list_link = "file_list.php?user=$user&project=$project";
 
         if (file_exists($filePath)): ?>
             <h1>Viewing File: <?= htmlspecialchars($fileName) ?></h1>
-            <pre><?= htmlspecialchars(file_get_contents($filePath)) ?></pre>
-
+<?php
+// Assuming you read the file contents into $code
+$fileContents = htmlspecialchars(file_get_contents($filePath)); // Ensure special characters are escaped
+?>
+<pre><code class="language-css"><?php echo $fileContents; ?></code></pre>
             <!-- Check if user is the owner or a guest to show edit/delete options -->
             <?php if ($user === 'guest' || (isset($_SESSION['username']) && $user === $_SESSION['username'])): ?>
                 <p>

@@ -29,6 +29,13 @@ $content = file_get_contents($projectDir);
 <!DOCTYPE html>
 <html lang="en">
 <head>
+<!-- Include Highlight.js CSS -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.5.1/styles/default.min.css">
+
+<!-- Include Highlight.js JavaScript -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.5.1/highlight.min.js"></script>
+<script>hljs.highlightAll();</script>
+
     <meta charset="UTF-8">
     <title>Edit File</title>
 </head>
