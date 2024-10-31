@@ -17,8 +17,8 @@ $userDirs = array_filter(glob($baseDir . '*'), 'is_dir'); // Get all user direct
     <h1>User Projects</h1>
     <nav>
         <p>
-            <a href="index.php">Upload A Project</a> | 
-            <a href="login.php">Login</a> | 
+            <a href="index.php">Upload A Project</a> |
+            <a href="login.php">Login</a> |
             <a href="register.php">Register</a>
         </p>
     </nav>
@@ -33,22 +33,39 @@ $userDirs = array_filter(glob($baseDir . '*'), 'is_dir'); // Get all user direct
                     <?php
                     // Get all project folders for this user
                     $projectDirs = array_filter(glob($userDir . '/*'), 'is_dir');
+                   if (!empty($projectDirs)): ?>
+    <ul>
+        <?php foreach ($projectDirs as $projectDir): ?>
+            <?php $projectName = basename($projectDir); ?>
+            <li>
+                <a href="project_view.php?user=<?= urlencode($username) ?>&project=<?= urlencode($projectName) ?>">
+                    <?= htmlspecialchars($projectName) ?>
+                </a>
+                <?php
+                // Check for the preview image with multiple extensions
+                $extensions = ['jpg', 'jpeg', 'png', 'gif'];
+                $imageFound = false;
 
-                    if (!empty($projectDirs)): ?>
-                        <ul>
-                            <?php foreach ($projectDirs as $projectDir): ?>
-                                <?php $projectName = basename($projectDir); ?>
-                                <li>
-                                    <a href="project_view.php?user=<?= urlencode($username) ?>&project=<?= urlencode($projectName) ?>">
-                                        <?= htmlspecialchars($projectName) ?>
-                                    </a>
-                                </li>
-                            <?php endforeach; ?>
-                        </ul>
-                    <?php else: ?>
-                        <ul><li>No projects found.</li></ul>
-                    <?php endif; ?>
-                </li>
+                foreach ($extensions as $extension) {
+                    $previewImagePath = $projectDir . '/preview.' . $extension;
+                    if (file_exists($previewImagePath)) {
+                        echo '<img src="' . htmlspecialchars($previewImagePath) . '" alt="Preview of ' . htmlspecialchars($projectName) . '" style="width: 400px; height: auto;">';
+                        $imageFound = true;
+                        break; // Exit the loop once the image is found
+                    }
+                }
+                ?>
+                <?php if (!$imageFound): ?>
+                    <span>No preview available</span>
+                <?php endif; ?>
+            </li>
+        <?php endforeach; ?>
+    </ul>
+<?php else: ?>
+    <ul><li>No projects found.</li></ul>
+<?php endif; ?>
+
+</li>
             <?php endforeach; ?>
         </ul>
     <?php endif; ?>

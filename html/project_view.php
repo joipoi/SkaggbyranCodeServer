@@ -1,6 +1,4 @@
 <?php
-// project.php
-
 session_start(); // Ensure session is started for user authentication
 
 // Sanitize input
@@ -10,11 +8,15 @@ $directory = "uploads/$username/$projectName/";
 
 // Handle image upload
 if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_FILES['preview_image'])) {
-    $targetDir = $directory; // Directory to save uploaded images
-    $targetFile = $targetDir . basename($_FILES['preview_image']['name']);
-    $imageFileType = strtolower(pathinfo($targetFile, PATHINFO_EXTENSION));
+    $targetDir = $directory; // Ensure this is set correctly
 
-    // Check if image file is a valid image
+    // Get the original file extension
+    $imageFileType = strtolower(pathinfo($_FILES['preview_image']['name'], PATHINFO_EXTENSION));
+
+    // Set the target file name to preview.<extension>
+    $targetFile = $targetDir . 'preview.' . $imageFileType;
+
+    // Check if the uploaded file is a valid image
     $check = getimagesize($_FILES['preview_image']['tmp_name']);
     if ($check !== false) {
         // Check file size (limit to 2MB here)
@@ -30,7 +32,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_FILES['preview_image'])) {
 
                 // Attempt to move the uploaded file
                 if (move_uploaded_file($_FILES['preview_image']['tmp_name'], $targetFile)) {
-                    echo "The file " . htmlspecialchars(basename($_FILES['preview_image']['name'])) . " has been uploaded.";
+                    echo "The file has been uploaded as " . htmlspecialchars($targetFile);
                 } else {
                     echo "Sorry, there was an error uploading your file.";
                 }
@@ -40,6 +42,29 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_FILES['preview_image'])) {
         }
     } else {
         echo "File is not an image.";
+    }
+}
+
+// Handle project renaming
+if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['new_project_name'])) {
+    $newProjectName = trim($_POST['new_project_name']);
+    
+    // Validate new project name (simple check)
+    if (!empty($newProjectName) && preg_match('/^[a-zA-Z0-9_\-]+$/', $newProjectName)) {
+        $newProjectDir = "uploads/$username/$newProjectName/";
+
+        // Check if the new project name already exists
+        if (!is_dir($newProjectDir)) {
+            rename($directory, $newProjectDir);
+            // Update the directory variable
+            $directory = $newProjectDir;
+            $projectName = $newProjectName; // Update the project name variable
+            echo "<p>Project renamed to " . htmlspecialchars($newProjectName) . " successfully.</p>";
+        } else {
+            echo "<p>Error: A project with that name already exists.</p>";
+        }
+    } else {
+        echo "<p>Error: Invalid project name.</p>";
     }
 }
 ?>
@@ -64,7 +89,59 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_FILES['preview_image'])) {
     </nav>
 
     <?php if (isset($_GET['user']) && isset($_GET['project'])): ?>
-        <h1>Project: <?= htmlspecialchars($projectName) ?></h1>
+
+<!-- Rename project section -->
+<?php if ($username === 'guest' || (isset($_SESSION['username']) && $_SESSION['username'] === $username)): ?>
+    <h2 id="project-name-display"><?= htmlspecialchars($projectName) ?></h2>
+    <input type="text" id="new_project_name" style="display:none;" placeholder="New Project Name" required>
+    <button id="edit-button">✏️ Edit</button>
+    <button id="confirm-button" style="display:none;">✅ Confirm</button>
+    <button id="cancel-button" style="display:none;">❌ Cancel</button>
+
+    <script>
+        const editButton = document.getElementById('edit-button');
+        const confirmButton = document.getElementById('confirm-button');
+        const cancelButton = document.getElementById('cancel-button');
+        const projectNameDisplay = document.getElementById('project-name-display');
+        const newProjectNameInput = document.getElementById('new_project_name');
+
+        editButton.onclick = function() {
+            projectNameDisplay.style.display = 'none';
+            newProjectNameInput.style.display = 'inline';
+            confirmButton.style.display = 'inline';
+            cancelButton.style.display = 'inline';
+            newProjectNameInput.value = projectNameDisplay.textContent; // Pre-fill input
+        };
+
+        confirmButton.onclick = function() {
+            const newProjectName = newProjectNameInput.value.trim();
+            if (newProjectName) {
+                // Submit the new project name via a form
+                const form = document.createElement('form');
+                form.method = 'POST';
+                form.action = 'project_view.php?user=<?= urlencode($username) ?>&project=<?= urlencode($projectName) ?>';
+
+                const input = document.createElement('input');
+                input.type = 'hidden';
+                input.name = 'new_project_name';
+                input.value = newProjectName;
+
+                form.appendChild(input);
+                document.body.appendChild(form);
+                form.submit();
+            }
+        };
+
+        cancelButton.onclick = function() {
+            projectNameDisplay.style.display = 'inline';
+            newProjectNameInput.style.display = 'none';
+            confirmButton.style.display = 'none';
+            cancelButton.style.display = 'none';
+        };
+    </script>
+<?php else: ?>
+    <h2 id="project-name-display"><?= htmlspecialchars($projectName) ?></h2>
+<?php endif; ?>
 
         <?php if (is_dir($directory)): ?>
             <?php
@@ -104,7 +181,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_FILES['preview_image'])) {
 
         <!-- Image upload form -->
         <h2>Upload a Project Preview Image</h2>
-        <form action="projects.php?user=<?= urlencode($username) ?>&project=<?= urlencode($projectName) ?>" method="POST" enctype="multipart/form-data">
+        <form action="project_view.php?user=<?= urlencode($username) ?>&project=<?= urlencode($projectName) ?>" method="POST" enctype="multipart/form-data">
             <label for="preview_image">Choose an image to upload:</label>
             <input type="file" name="preview_image" id="preview_image" accept="image/*" required>
             <input type="submit" value="Upload Image">
