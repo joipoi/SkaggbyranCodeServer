@@ -92,7 +92,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['new_project_name'])) 
 
 <!-- Rename project section -->
 <?php if ($username === 'guest' || (isset($_SESSION['username']) && $_SESSION['username'] === $username)): ?>
-    <h2 id="project-name-display"><?= htmlspecialchars($projectName) ?></h2>
+    <span style="font-size:30px;" id="project-name-display"><?= htmlspecialchars($projectName) ?></span>
     <input type="text" id="new_project_name" style="display:none;" placeholder="New Project Name" required>
     <button id="edit-button">✏️ Edit</button>
     <button id="confirm-button" style="display:none;">✅ Confirm</button>
