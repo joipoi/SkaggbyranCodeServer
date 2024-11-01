@@ -1,6 +1,7 @@
 <?php
 session_start();
 
+// Get user and project information
 $user = isset($_GET['user']) ? $_GET['user'] : 'guest';
 $project = isset($_GET['project']) ? $_GET['project'] : 'defaultProject';
 
@@ -8,18 +9,28 @@ $projectDir = "uploads/$user/$project";
 
 // Check if the project directory exists
 if (is_dir($projectDir)) {
-    // Create a ZIP file
+    downloadProjectAsZip($projectDir, "$project.zip");
+} else {
+    echo "Project does not exist.";
+}
+
+/**
+ * Create a ZIP file from the specified directory and initiate the download.
+ *
+ * @param string $directory The directory to compress.
+ * @param string $zipFileName The name of the ZIP file to create.
+ */
+function downloadProjectAsZip($directory, $zipFileName) {
     $zip = new ZipArchive();
-    $zipFileName = "$project.zip";
 
     if ($zip->open($zipFileName, ZipArchive::CREATE | ZipArchive::OVERWRITE) === TRUE) {
         // Add files to the ZIP file
-        $files = new RecursiveIteratorIterator(new RecursiveDirectoryIterator($projectDir));
+        $files = new RecursiveIteratorIterator(new RecursiveDirectoryIterator($directory));
         
         foreach ($files as $file) {
             if (!$file->isDir()) {
                 $filePath = $file->getRealPath();
-		$relativePath = substr($filePath, strlen($projectDir));
+                $relativePath = substr($filePath, strlen($directory));
                 $zip->addFile($filePath, $relativePath);
             }
         }
@@ -38,7 +49,5 @@ if (is_dir($projectDir)) {
     } else {
         echo "Could not create ZIP file.";
     }
-} else {
-    echo "Project does not exist.";
 }
 ?>
