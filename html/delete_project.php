@@ -13,8 +13,8 @@ $currentUser = $isLoggedIn ? $_SESSION['username'] : 'guest';
 $projectDir = "uploads/$user/$project";
 
 // Security check: Allow deletion only if the user is the project owner or if it's a guest project
-if ($isLoggedIn && $currentUser !== $user) {
-    echo "You do not have permission to delete this project.";
+if ($currentUser !== $user && $user !== 'guest') {
+        echo "You do not have permission to delete this file.";
     exit;
 }
 

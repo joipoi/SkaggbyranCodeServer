@@ -15,15 +15,14 @@ $currentUser = $isLoggedIn ? $_SESSION['username'] : 'guest';
 $projectDir = "uploads/$user/$project/$file";
 
 // Security check: Allow deletion only if the user is the project owner or if it's a guest project
-if ($isLoggedIn && $currentUser !== $user) {
-    echo "You do not have permission to delete this file.";
+if ($currentUser !== $user && $user !== 'guest') {
+	echo "You do not have permission to delete this file.";
     exit;
 }
-
 // Allow deletion if it's a guest project or if the user is the owner
 if (file_exists($projectDir)) {
     unlink($projectDir);
-    echo "File deleted successfully. <a href='view_file.php?user=" . urlencode($user) . "&project=" . urlencode($project) . "'>Go back</a>";
+    echo "File deleted successfully. <a href='file_list.php?user=" . urlencode($user) . "&project=" . urlencode($project) . "'>Go back</a>";
 } else {
     echo "File does not exist.";
 }
