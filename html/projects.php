@@ -1,5 +1,7 @@
 <?php
-// projects.php
+session_start();
+$user = isset($_SESSION['username']) ? $_SESSION['username'] : 'guest';
+
 $baseDir = 'uploads/';
 $userDirs = array_filter(glob($baseDir . '*'), 'is_dir'); // Get all user directories
 $usernames = array_map('basename', $userDirs); // Extract usernames
@@ -19,6 +21,7 @@ $selectedUser = isset($_GET['filter_user']) ? $_GET['filter_user'] : null;
 <body>
 
     <h1>User Projects</h1>
+    <h2>Logged in as: <?php echo $user; ?> </h2>
     <nav>
         <p>
             <a href="index.php">Upload A Project</a> |

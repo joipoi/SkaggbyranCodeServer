@@ -18,7 +18,7 @@ session_start();
 <label for="projectname">Enter Your Project Name:</label>
         <input type="text" name="projectname" required> <br>
             <input type="hidden" name="username" value="<?= htmlspecialchars($_SESSION['username']) ?>">
-            <input type="file" name="files[]" webkitdirectory multiple required>
+            <input type="file" name="files[]" multiple required>
             <input type="submit" value="Upload">
         </form>
     <?php else: ?>

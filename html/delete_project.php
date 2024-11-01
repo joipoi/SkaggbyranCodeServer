@@ -1,10 +1,22 @@
 <?php
 session_start();
 
+// Get user and project information
 $user = isset($_GET['user']) ? $_GET['user'] : 'guest';
 $project = isset($_GET['project']) ? $_GET['project'] : 'defaultProject';
 
+// Check if the user is logged in
+$isLoggedIn = isset($_SESSION['username']);
+$currentUser = $isLoggedIn ? $_SESSION['username'] : 'guest';
+
+// Define the project directory
 $projectDir = "uploads/$user/$project";
+
+// Security check: Allow deletion only if the user is the project owner or if it's a guest project
+if ($isLoggedIn && $currentUser !== $user) {
+    echo "You do not have permission to delete this project.";
+    exit;
+}
 
 // Check if the project directory exists
 if (is_dir($projectDir)) {
