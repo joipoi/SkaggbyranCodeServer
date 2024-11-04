@@ -8,21 +8,36 @@ $file = isset($_GET['file']) ? $_GET['file'] : '';
 
 // Create the link to file_list.php
 $file_list_link = "file_list.php?user=$user&project=$project";
+
+function displayFileContent($filePath, $fileName) {
+    if (file_exists($filePath)) {
+        echo "<h1>Viewing File: " . htmlspecialchars($fileName) . "</h1>";
+        $fileContents = htmlspecialchars(file_get_contents($filePath)); // Ensure special characters are escaped
+        echo "<pre><code class='language-css'>{$fileContents}</code></pre>";
+    } else {
+        echo "<p>File not found.</p>";
+    }
+}
+
+function displayEditDeleteOptions($user, $project, $fileName) {
+    if ($user === 'guest' || (isset($_SESSION['username']) && $user === $_SESSION['username'])) {
+        echo "<p>
+                <a href='edit_file.php?user=" . urlencode($user) . "&project=" . urlencode($project) . "&file=" . urlencode($fileName) . "'>Edit</a> | 
+                <a href='delete_file.php?user=" . urlencode($user) . "&project=" . urlencode($project) . "&file=" . urlencode($fileName) . "' onclick=\"return confirm('Are you sure you want to delete this file?');\">Delete</a>
+              </p>";
+    }
+}
 ?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<!-- Include Highlight.js CSS -->
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.5.1/styles/default.min.css">
-
-<!-- Include Highlight.js JavaScript -->
-<script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.5.1/highlight.min.js"></script>
-<script>hljs.highlightAll();</script>
-
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.5.1/styles/default.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.5.1/highlight.min.js"></script>
+    <script>hljs.highlightAll();</script>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>View File</title>
-    <link rel="stylesheet" href="styles.css"> <!-- Link to a CSS file if needed -->
+    <link rel="stylesheet" href="styles.css">
 </head>
 <body>
 
@@ -44,23 +59,9 @@ $file_list_link = "file_list.php?user=$user&project=$project";
         $fileName = preg_replace('/[^a-zA-Z0-9_.-]/', '', $file);
         $filePath = "uploads/$username/$projectName/$fileName";
 
-        if (file_exists($filePath)): ?>
-            <h1>Viewing File: <?= htmlspecialchars($fileName) ?></h1>
-<?php
-// Assuming you read the file contents into $code
-$fileContents = htmlspecialchars(file_get_contents($filePath)); // Ensure special characters are escaped
-?>
-<pre><code class="language-css"><?php echo $fileContents; ?></code></pre>
-            <!-- Check if user is the owner or a guest to show edit/delete options -->
-            <?php if ($user === 'guest' || (isset($_SESSION['username']) && $user === $_SESSION['username'])): ?>
-                <p>
-                    <a href="edit_file.php?user=<?= urlencode($user) ?>&project=<?= urlencode($project) ?>&file=<?= urlencode($fileName) ?>">Edit</a> | 
-                    <a href="delete_file.php?user=<?= urlencode($user) ?>&project=<?= urlencode($project) ?>&file=<?= urlencode($fileName) ?>" onclick="return confirm('Are you sure you want to delete this file?');">Delete</a>
-                </p>
-            <?php endif; ?>
-        <?php else: ?>
-            <p>File not found.</p>
-        <?php endif; ?>
+        displayFileContent($filePath, $fileName);
+        displayEditDeleteOptions($user, $project, $fileName);
+        ?>
     <?php else: ?>
         <p>No user, project, or file specified.</p>
     <?php endif; ?>

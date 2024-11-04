@@ -7,10 +7,10 @@ session_start();
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Upload Files or Folders</title>
+    <title>Upload A Frontend Project</title>
 </head>
 <body>
-    <h1>Upload Files or Folders</h1>
+    <h1>Upload A Frontend Project</h1>
 
     <?php if (isset($_SESSION['username'])): ?>
         <p>Welcome, <?= htmlspecialchars($_SESSION['username']) ?>!</p>
@@ -22,7 +22,7 @@ session_start();
             <input type="submit" value="Upload">
         </form>
     <?php else: ?>
-        <p>Please log in to upload files. You can also upload as a guest.</p>
+        <p>Either upload as a guest or login first</p>
 	<form action="upload.php" method="POST" enctype="multipart/form-data">
 <label for="projectname">Enter Your Project Name:</label>
 <input type="text" name="projectname" required> <br>

@@ -45,6 +45,6 @@ $content = file_get_contents($projectDir);
         <textarea name="content" rows="20" cols="80"><?= htmlspecialchars($content) ?></textarea><br>
         <input type="submit" value="Save Changes">
     </form>
-    <p><a href="view_file.php?user=<?= urlencode($user) ?>&project=<?= urlencode($project) ?>">Cancel</a></p>
+    <p><a href="view_file.php?user=<?= urlencode($user) ?>&project=<?= urlencode($project) ?>&file=<?= urlencode($file) ?>">Cancel</a></p>
 </body>
 </html>

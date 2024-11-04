@@ -48,6 +48,7 @@ $directory = "uploads/$username/$projectName/";
     <?php else: ?>
         <p>No user or project specified, or no files found for user <?= htmlspecialchars($username) ?> in project <?= htmlspecialchars($projectName) ?>.</p>
     <?php endif; ?>
+ <p><a href="project_view.php?user=<?= urlencode($username) ?>&project=<?= urlencode($projectName) ?>">Back To Project</a></p>
 
 </body>
 </html>
