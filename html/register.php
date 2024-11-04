@@ -66,7 +66,7 @@ $conn->close();
         <label for="password">Password:</label>
         <input type="password" name="password" required>
         <input class="submitBtn" type="submit" value="Register">
-    </form>
-    <p><a href="login.php">Already have an account? Log in</a></p>
+ <a href="login.php">Already have an account? Log in</a>  
+ </form>
 </body>
 </html>

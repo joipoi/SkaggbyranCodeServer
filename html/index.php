@@ -8,6 +8,7 @@ session_start();
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
  <link rel="stylesheet" href="styles.css">
+<script src="script.js"></script>
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200">
     <title>Upload A Frontend Project</title>
 </head>
@@ -41,9 +42,10 @@ $uploadButtonText = isset($_SESSION['username']) ? "Upload" : "Upload as Guest";
     
     <input type="hidden" name="username" value="<?= $username ?>">
     
-    <label for="files[]" class="fileButton">Select files</label>
-    <input type="file" name="files[]" webkitdirectory multiple required>
-    
+    <label for="fileInput" class="fileButton">Select files</label>
+<input type="file" id="fileInput" name="files[]" multiple required style="display: none;">
+<div id="fileList">
+</div>
     <button type="submit" class="submitBtn"><?= $uploadButtonText ?></button>
 </form>
 

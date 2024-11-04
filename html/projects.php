@@ -15,23 +15,27 @@ $selectedUser = isset($_GET['filter_user']) ? $_GET['filter_user'] : null;
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200">
     <title>User Projects</title>
 </head>
 <body>
-
+<nav>
+   <ul>
+		<li><img src="https://download.logo.wine/logo/Raspberry_Pi/Raspberry_Pi-Logo.wine.png" height="56px"></li>
+  <li><a href="index.php">Upload A Project</a></li>   
+ <li><a href="login.php">Login</a></li>
+      <li><a href="register.php">Register</a></li>
+      <li><a href="projects.php">View All Projects</a</li>
+    <li>Logged in as: <?php echo $user; ?> </li>
+      <li><a href="logout.php" style="color: #eee;"></a>
+			<span class="material-symbols-outlined">logout</span>
+		</li>
+   </ul>
+</nav>
     <h1>User Projects</h1>
-    <h2>Logged in as: <?php echo $user; ?> </h2>
-    <nav>
-        <p>
-            <a href="index.php">Upload A Project</a> |
-            <a href="login.php">Login</a> |
-            <a href="register.php">Register</a>
-        </p>
-    </nav>
 
-<!-- Filter form -->
 <form method="GET" action="projects.php" id="filter-form">
-    <label for="filter_user">Filter by User:</label>
     <select name="filter_user" id="filter_user" onchange="document.getElementById('filter-form').submit();">
         <option value="">All Users</option>
         <?php foreach ($usernames as $username): ?>
@@ -40,11 +44,9 @@ $selectedUser = isset($_GET['filter_user']) ? $_GET['filter_user'] : null;
             </option>
         <?php endforeach; ?>
     </select>
-    <!-- Removed the submit button -->
 </form>
 
 <?php listProjects($userDirs, $selectedUser); ?>
- 
 
 </body>
 </html>
@@ -61,14 +63,13 @@ function listProjects($userDirs, $selectedUser) {
     if (empty($userDirs)): ?>
         <p>No user projects found.</p>
     <?php else: ?>
-        <ul>
             <?php foreach ($userDirs as $userDir): ?>
                 <?php $username = basename($userDir); ?>
-                <li><strong><?= htmlspecialchars($username) ?></strong>
+<h2 class="userName"> <strong><?= htmlspecialchars($username) ?></strong></h2>
+                 <div class="projectContainer"> 
                     <?php displayProjects($userDir, $username); ?>
-                </li>
+                </div>
             <?php endforeach; ?>
-        </ul>
     <?php endif;
 }
 
@@ -77,19 +78,18 @@ function displayProjects($userDir, $username) {
     $projectDirs = array_filter(glob($userDir . '/*'), 'is_dir');
 
     if (!empty($projectDirs)): ?>
-        <ul>
             <?php foreach ($projectDirs as $projectDir): ?>
                 <?php $projectName = basename($projectDir); ?>
-                <li>
-                    <a href="project_view.php?user=<?= urlencode($username) ?>&project=<?= urlencode($projectName) ?>">
-                        <?= htmlspecialchars($projectName) ?>
-                    </a>
-                    <?php displayPreviewImage($projectDir, $projectName); ?>
-                </li>
+	 <a class="projectName" href="project_view.php?user=<?= urlencode($username) ?>&project=<?= urlencode($projectName) ?>">
+<div class="projectDiv">
+                      <?= htmlspecialchars($projectName) ?>
+		    <?php displayPreviewImage($projectDir, $projectName); ?>
+</div>
+</a>
+
             <?php endforeach; ?>
-        </ul>
     <?php else: ?>
-        <ul><li>No projects found.</li></ul>
+        No projects found.
     <?php endif;
 }
 
@@ -101,14 +101,15 @@ function displayPreviewImage($projectDir, $projectName) {
     foreach ($extensions as $extension) {
         $previewImagePath = $projectDir . '/preview.' . $extension;
         if (file_exists($previewImagePath)) {
-            echo '<img src="' . htmlspecialchars($previewImagePath) . '" alt="Preview of ' . htmlspecialchars($projectName) . '" style="width: 400px; height: auto;">';
+            echo '<img class="projectPreview" src="' . htmlspecialchars($previewImagePath) . '" alt="Preview of ' . htmlspecialchars($projectName) . '">';
             $imageFound = true;
             break; // Exit the loop once the image is found
         }
     }
 
     if (!$imageFound) {
-        echo '<span>No preview available</span>';
+	    echo '<img class="projectPreview" src="defaultPreview.png" alt="Preview of ' . htmlspecialchars($projectName) . '">';
+
     }
 }
 

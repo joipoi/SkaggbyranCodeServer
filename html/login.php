@@ -70,7 +70,7 @@ $conn->close();
         <label for="password">Password:</label>
         <input type="password" name="password" required>
         <input class="submitBtn" type="submit" value="Login">
-    </form>
-    <p><a href="register.php">Don't have an account? Register</a></p>
+ <a href="register.php">Don't have an account? Register</a>   
+</form>
 </body>
 </html>

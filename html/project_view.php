@@ -98,17 +98,22 @@ function findIndexFile($directory){
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Project: <?= htmlspecialchars($projectName) ?></title>
+<link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200">
 </head>
 <body>
-
-    <nav>
-        <p>
-            <a href="index.php">Upload A Project</a> |
-            <a href="projects.php">View All Projects</a> |
-            <a href="login.php">Login</a> |
-            <a href="register.php">Register</a>
-        </p>
-    </nav>
+<nav>
+   <ul>
+		<li><img src="https://download.logo.wine/logo/Raspberry_Pi/Raspberry_Pi-Logo.wine.png" height="56px"></li>
+  <li><a href="index.php">Upload A Project</a></li>   
+ <li><a href="login.php">Login</a></li>
+      <li><a href="register.php">Register</a></li>
+      <li><a href="projects.php">View All Projects</a</li>
+      <li><a href="logout.php" style="color: #eee;"></a>
+			<span class="material-symbols-outlined">logout</span>
+		</li>
+   </ul>
+</nav>
 
     <?php if (isset($_GET['user']) && isset($_GET['project'])): ?>
 
@@ -142,27 +147,26 @@ $startFile = findIndexFile($directory);
             ?>
 
             <!-- Display links -->
-            <p><a href="<?= htmlspecialchars($startFile) ?>" target="_blank">View Project</a></p>
-            <p><a href="file_list.php?user=<?= urlencode($username) ?>&project=<?= urlencode($projectName) ?>">View Files in Project</a></p>
+            <p><a class="defaultLink"  href="<?= htmlspecialchars($startFile) ?>" target="_blank">View Project</a></p>
+            <p><a class="defaultLink"  href="file_list.php?user=<?= urlencode($username) ?>&project=<?= urlencode($projectName) ?>">View Files in Project</a></p>
 
         <?php else: ?>
             <p>No files found for user <?= htmlspecialchars($username) ?> in project <?= htmlspecialchars($projectName) ?>.</p>
         <?php endif; ?>
 
         <!-- Link to download the project -->
-        <p><a href="download_project.php?user=<?= urlencode($username) ?>&project=<?= urlencode($projectName) ?>">Download Project</a></p>
+        <p><a class="defaultLink" href="download_project.php?user=<?= urlencode($username) ?>&project=<?= urlencode($projectName) ?>">Download Project</a></p>
 
         <!-- Link to delete the project -->
         <?php if ($username === 'guest' || (isset($_SESSION['username']) && $_SESSION['username'] === $username)): ?>
-            <p><a href="delete_project.php?user=<?= urlencode($username) ?>&project=<?= urlencode($projectName) ?>" onclick="return confirm('Are you sure you want to delete this project?');">Delete Project</a></p>
-        <?php endif; ?>
+            <p><a class="defaultLink"  href="delete_project.php?user=<?= urlencode($username) ?>&project=<?= urlencode($projectName) ?>" onclick="return confirm('Are you sure you want to delete this project?');">Delete Project</a></p>
+	<?php endif; ?>
 
         <!-- Image upload form -->
-        <h2>Upload a Project Preview Image</h2>
         <form action="project_view.php?user=<?= urlencode($username) ?>&project=<?= urlencode($projectName) ?>" method="POST" enctype="multipart/form-data">
-            <label for="preview_image">Choose an image to upload:</label>
-            <input type="file" name="preview_image" id="preview_image" accept="image/*" required>
-            <input type="submit" value="Upload Image">
+	    <input type="file" name="preview_image" id="preview_image" accept="image/*" required  style="display: none;">
+<label id="previewBtn" for="preview_image" class="defaultLink">Upload Preview Image</label>
+            <input id="previewSubmit" type="submit" value="Upload Preview Image" style="display: none;">
         </form>
 
     <?php else: ?>
