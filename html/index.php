@@ -35,7 +35,7 @@ $uploadButtonText = isset($_SESSION['username']) ? "Upload" : "Upload as Guest";
 
 <p id="welcome"><?= $welcomeMessage ?></p>
 
-<form action="upload.php" method="POST" enctype="multipart/form-data" id="formWrap">
+<form action="upload.php" method="POST" enctype="multipart/form-data" class="formWrap">
     <label for="projectname">Name your project then select files:</label><br>
     <input type="text" name="projectname" placeholder="Project Name" required>
     
@@ -44,7 +44,7 @@ $uploadButtonText = isset($_SESSION['username']) ? "Upload" : "Upload as Guest";
     <label for="files[]" class="fileButton">Select files</label>
     <input type="file" name="files[]" webkitdirectory multiple required>
     
-    <button type="submit" id="uploadBtn"><?= $uploadButtonText ?></button>
+    <button type="submit" class="submitBtn"><?= $uploadButtonText ?></button>
 </form>
 
 </body>

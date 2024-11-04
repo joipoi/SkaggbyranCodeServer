@@ -8,20 +8,14 @@ body
 	text-align: center;
 }
 
+
+/* Form Styling */
 label
 {
 	font-size: 14px;
 }
 
-
-nav
-{
-	width: 100%;
-	height: 56px;
-	margin-bottom: 20px;
-}
-
-#uploadBtn
+.submitBtn
 {
 	height: 32px;
 	background: rgb(187,17,65);
@@ -36,6 +30,94 @@ nav
 	justify-content: center;
 	margin-top: 10px;
 	font-size: 16px;
+}
+
+button
+{
+	height: 48px;
+	display: flex;
+	justify-content: flex-start;
+	align-items: center;
+	cursor: pointer;
+	padding: 10px ;
+}
+
+button .material-symbols-outlined
+{
+	font-size: 32px;
+	margin: 0 6px 0 -4px;
+}
+
+.formWrap
+{
+	width: 285px;
+	padding: 20px;
+	margin: 0 auto;
+	padding-bottom: 25px;
+	border: 1px solid black;
+	border-radius: 4px;
+}
+
+
+input[type="text"]
+{
+	width: 166px;
+	height: 24px;
+	padding: 5px;
+	margin-top: 10px;
+	
+}
+
+input[type="file"] 
+{
+  	display: none;
+	border-radius: 4px;
+}
+
+.fileButton 
+{
+	height: 24px;
+	width: 70px;
+	background: rgb(187,17,65);
+	color: #fff;
+  	border: 1px solid #ccc;
+	border-radius: 4px;
+  	display: inline-block;
+  	padding: 6px 12px;
+  	cursor: pointer;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	float: right;
+	margin-top: 10px;
+	font-size: 12px;
+}
+
+.fileButton:hover
+{
+	box-shadow: 0 0 5px rgba(187,17,65,0.4);
+}
+
+/*
+#uploadWrap
+{
+	width: 278px;
+	height: 64px;
+	margin: 0 auto;
+	margin-bottom: 20px;
+	display: flex;
+	justify-content: flex-start;
+	align-items: center;
+	gap: 10px;
+	border: 0px solid black;
+} */
+
+/* Nav Menu Styling */
+nav
+{
+	width: 100%;
+	height: 56px;
+	margin-bottom: 20px;
 }
 
 ul
@@ -116,87 +198,7 @@ ul li .material-symbols-outlined
 	margin: 0 0 0 4px;
 }
 
-#uploadWrap
-{
-	width: 278px;
-	height: 64px;
-	margin: 0 auto;
-	margin-bottom: 20px;
-	display: flex;
-	justify-content: flex-start;
-	align-items: center;
-	gap: 10px;
-	border: 0px solid black;
-}
-
-button
-{
-	height: 48px;
-	display: flex;
-	justify-content: flex-start;
-	align-items: center;
-	cursor: pointer;
-	padding: 10px ;
-}
-
-button .material-symbols-outlined
-{
-	font-size: 32px;
-	margin: 0 6px 0 -4px;
-}
-
-#formWrap
-{
-	width: 285px;
-	padding: 20px;
-	margin: 0 auto;
-	padding-bottom: 25px;
-	border: 1px solid black;
-	border-radius: 4px;
-}
-
-
-input[type="text"]
-{
-	width: 166px;
-	height: 24px;
-	padding: 5px;
-	margin-top: 10px;
-	
-}
-
-input[type="file"] 
-{
-  	display: none;
-	border-radius: 4px;
-}
-
-.fileButton 
-{
-	height: 24px;
-	width: 70px;
-	background: rgb(187,17,65);
-	color: #fff;
-  	border: 1px solid #ccc;
-	border-radius: 4px;
-  	display: inline-block;
-  	padding: 6px 12px;
-  	cursor: pointer;
-	display: flex;
-	align-items: center;
-	justify-content: center;
-	float: right;
-	margin-top: 10px;
-	font-size: 12px;
-}
-
-.fileButton:hover
-{
-	box-shadow: 0 0 5px rgba(187,17,65,0.4);
-}
-
-
-
+/*
 footer
 {
 	width: 100%;
@@ -211,3 +213,4 @@ footer a
 {
 	color: rgb(187,17,65);
 }
+*/

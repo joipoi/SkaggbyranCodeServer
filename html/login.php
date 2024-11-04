@@ -47,7 +47,6 @@ $conn->close();
 <head>
     <meta charset="UTF-8">
  <link rel="stylesheet" href="styles.css">
-   <link rel="stylesheet"href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200">
     <title>Login</title>
 </head>
 <body>
@@ -65,12 +64,12 @@ $conn->close();
    </nav>
 
     <h2>Login</h2>
-    <form action="login.php" method="POST">
+    <form action="login.php" method="POST" class="formWrap">
         <label for="username">Username:</label>
         <input type="text" name="username" required>
         <label for="password">Password:</label>
         <input type="password" name="password" required>
-        <input type="submit" value="Login">
+        <input class="submitBtn" type="submit" value="Login">
     </form>
     <p><a href="register.php">Don't have an account? Register</a></p>
 </body>
