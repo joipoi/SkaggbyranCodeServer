@@ -7,9 +7,24 @@ session_start();
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+ <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200">
     <title>Upload A Frontend Project</title>
 </head>
 <body>
+<nav>
+   <ul>
+		<li><img src="https://download.logo.wine/logo/Raspberry_Pi/Raspberry_Pi-Logo.wine.png" height="56px"></li>
+  <li><a href="index.php">Upload A Project</a></li>   
+ <li><a href="login.php">Login</a></li>
+      <li><a href="register.php">Register</a></li>
+      <li><a href="projects.php">View All Projects</a</li>
+      <li><a href="logout.php" style="color: #eee;"></a>
+			<span class="material-symbols-outlined">logout</span>
+		</li>
+   </ul>
+</nav>
+
     <h1>Upload A Frontend Project</h1>
 
 <?php
@@ -32,6 +47,5 @@ $uploadButtonText = isset($_SESSION['username']) ? "Upload" : "Upload as Guest";
     <button type="submit" id="uploadBtn"><?= $uploadButtonText ?></button>
 </form>
 
-    <p><a href="login.php">Login</a> | <a href="register.php">Register</a> | <a href="projects.php">View All Projects</a> | <a href="logout.php">Logout</a> </p>
 </body>
 </html>
