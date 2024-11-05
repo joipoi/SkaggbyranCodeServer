@@ -20,19 +20,7 @@ $selectedUser = isset($_GET['filter_user']) ? $_GET['filter_user'] : null;
     <title>User Projects</title>
 </head>
 <body>
-<nav>
-   <ul>
-		<li><img src="https://download.logo.wine/logo/Raspberry_Pi/Raspberry_Pi-Logo.wine.png" height="56px"></li>
-  <li><a href="index.php">Upload A Project</a></li>   
- <li><a href="login.php">Login</a></li>
-      <li><a href="register.php">Register</a></li>
-      <li><a href="projects.php">View All Projects</a</li>
-    <li>Logged in as: <?php echo $user; ?> </li>
-      <li><a href="logout.php" style="color: #eee;"></a>
-			<span class="material-symbols-outlined">logout</span>
-		</li>
-   </ul>
-</nav>
+<?php include 'navMenu.php'; ?>
     <h1>User Projects</h1>
 
 <form method="GET" action="projects.php" id="filter-form">

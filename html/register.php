@@ -44,22 +44,14 @@ $conn->close();
 <head>
     <meta charset="UTF-8">
     <link rel="stylesheet" href="styles.css">
+    <script src="script.js"></script>
+    <link rel="stylesheet"
+        href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200">
     <title>Register</title>
 </head>
 <body>
-<nav>
-      <ul>
-         <li><img src="https://download.logo.wine/logo/Raspberry_Pi/Raspberry_Pi-Logo.wine.png" height="56px"></li>
-         <li><a href="index.php">Upload A Project</a></li>
-         <li><a href="login.php">Login</a></li>
-         <li><a href="register.php">Register</a></li>
-         <li><a href="projects.php">View All Projects</a</li>
-         <li><a href="logout.php" style="color: #eee;"></a>
-            <span class="material-symbols-outlined">logout</span>
-         </li>
-      </ul>
-   </nav>
-    <h2>Register</h2>
+<?php include 'navMenu.php'; ?>
+    <h1>Register</h1>
     <form action="register.php" method="POST" class="formWrap">
         <label for="username">Username:</label>
         <input type="text" name="username" required>

@@ -44,33 +44,28 @@ $conn->close();
 
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
- <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="styles.css">
+    <script src="script.js"></script>
+    <link rel="stylesheet"
+        href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200">
     <title>Login</title>
 </head>
-<body>
-   <nav>
-      <ul>
-         <li><img src="https://download.logo.wine/logo/Raspberry_Pi/Raspberry_Pi-Logo.wine.png" height="56px"></li>
-         <li><a href="index.php">Upload A Project</a></li>
-         <li><a href="login.php">Login</a></li>
-         <li><a href="register.php">Register</a></li>
-         <li><a href="projects.php">View All Projects</a</li>
-         <li><a href="logout.php" style="color: #eee;"></a>
-            <span class="material-symbols-outlined">logout</span>
-         </li>
-      </ul>
-   </nav>
 
-    <h2>Login</h2>
+<body>
+<?php include 'navMenu.php'; ?>
+
+    <h1>Login</h1>
     <form action="login.php" method="POST" class="formWrap">
         <label for="username">Username:</label>
         <input type="text" name="username" required>
         <label for="password">Password:</label>
         <input type="password" name="password" required>
         <input class="submitBtn" type="submit" value="Login">
- <a href="register.php">Don't have an account? Register</a>   
-</form>
+        <a href="register.php">Don't have an account? Register</a>
+    </form>
 </body>
+
 </html>

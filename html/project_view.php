@@ -102,18 +102,7 @@ function findIndexFile($directory){
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200">
 </head>
 <body>
-<nav>
-   <ul>
-		<li><img src="https://download.logo.wine/logo/Raspberry_Pi/Raspberry_Pi-Logo.wine.png" height="56px"></li>
-  <li><a href="index.php">Upload A Project</a></li>   
- <li><a href="login.php">Login</a></li>
-      <li><a href="register.php">Register</a></li>
-      <li><a href="projects.php">View All Projects</a</li>
-      <li><a href="logout.php" style="color: #eee;"></a>
-			<span class="material-symbols-outlined">logout</span>
-		</li>
-   </ul>
-</nav>
+<?php include 'navMenu.php'; ?>
 
     <?php if (isset($_GET['user']) && isset($_GET['project'])): ?>
 
