@@ -78,12 +78,12 @@ function renameProject($directory, $username) {
     }
 }
 
-function findIndexFile($directory){
-    $htmlFiles = glob($directory . '*.html');
+function findIndexFile($directory, $htmlFiles) {
+    $validFiles = ['index.html', 'welcome.html', 'home.html', 'intro.html'];
 
     foreach ($htmlFiles as $file) {
         $filename = basename($file);
-        if (strtolower($filename) === 'index.html' || strpos(strtolower($filename), 'home') !== false) {
+        if (in_array(strtolower($filename), $validFiles)) {
             return $file; 
         }
     }
@@ -126,8 +126,8 @@ function findIndexFile($directory){
         <?php if (is_dir($directory)): ?>
             <?php
             // Find the starting file (index.html or similar)
-
-$startFile = findIndexFile($directory);
+            $htmlFiles = glob($directory . '*.html');
+$startFile = findIndexFile($directory, $htmlFiles);
 
 // If no special file is found, pick a random HTML file
             if ($startFile === null && !empty($htmlFiles)) {
