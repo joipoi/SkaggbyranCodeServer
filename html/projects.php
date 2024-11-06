@@ -96,7 +96,7 @@ function displayPreviewImage($projectDir, $projectName) {
     }
 
     if (!$imageFound) {
-	    echo '<img class="projectPreview" src="defaultPreview.png" alt="Preview of ' . htmlspecialchars($projectName) . '">';
+	    echo '<img class="projectPreview" src="images/defaultPreview.png" alt="Preview of ' . htmlspecialchars($projectName) . '">';
 
     }
 }

@@ -6,6 +6,9 @@ $username = isset($_GET['user']) ? urlencode($_GET['user']) : 'guest';
 $projectName = isset($_GET['project']) ? urlencode($_GET['project']) : 'defaultProject';
 $directory = "uploads/$username/$projectName/";
 $previewImagePath = glob($directory . "preview.*");
+if (empty($previewImagePath)) {
+    $previewImagePath = ['images/defaultPreview.png'];
+}
 $errorMessage = "";
 
 // Handle image upload

@@ -22,7 +22,9 @@ if ($currentUser !== $user && $user !== 'guest') {
 // Allow deletion if it's a guest project or if the user is the owner
 if (file_exists($projectDir)) {
     unlink($projectDir);
-    echo "File deleted successfully. <a href='file_list.php?user=" . urlencode($user) . "&project=" . urlencode($project) . "'>Go back</a>";
+   // echo "File deleted successfully. <a href='file_list.php?user=" . urlencode($user) . "&project=" . urlencode($project) . "'>Go back</a>";
+    header("Location: file_list.php?user=" . urlencode($user) . "&project=" . urlencode($project)); 
+    exit();
 } else {
     echo "File does not exist.";
 }

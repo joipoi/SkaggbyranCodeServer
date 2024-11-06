@@ -39,7 +39,8 @@ $user = isset($_SESSION['username']) ? $_SESSION['username'] : 'guest';
         <input type="hidden" name="username" value="<?= $username ?>">
 
         <label for="fileInput" class="fileButton">Select files</label>
-        <input type="file" id="fileInput" name="files[]" multiple required style="display: none;">
+        <input type="file" id="fileInput" name="files[]" multiple required style="display: none;" 
+               accept=".html,.css,.js,.jpg,.jpeg,.png,.gif,.webp">
         <div id="fileList">
         </div>
         <button type="submit" class="submitBtn"><?= $uploadButtonText ?></button>

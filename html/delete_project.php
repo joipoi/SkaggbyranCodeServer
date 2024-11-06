@@ -34,7 +34,9 @@ if (is_dir($projectDir)) {
     }
     rmdir($projectDir); // delete the project directory
 
-    echo "Project deleted successfully. <a href='projects.php'>Go back to Projects</a>";
+    //echo "Project deleted successfully. <a href='projects.php'>Go back to Projects</a>";
+    header("Location: projects.php"); 
+    exit();
 } else {
     echo "Project does not exist.";
 }
