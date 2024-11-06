@@ -208,7 +208,9 @@ function displayFiles($directory, $username, $projectName) {
                     <input type="file" name="preview_image" id="preview_image" accept="image/*" required
                         style="display: none;">
                     <label id="previewBtn" for="preview_image" class="defaultLink">Upload Preview Image</label>
-                    <input id="previewSubmit" type="submit" value="Upload Preview Image" style="display: none;">
+                    <div id="fileList">
+        </div>
+                    <input id="previewSubmit" type="submit" value="Confirm" style="display: none;">
                     <label> <?php if (!empty($errorMessage))
                         echo $errorMessage; ?> </label> <br>
                 </form>

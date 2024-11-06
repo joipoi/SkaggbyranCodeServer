@@ -1,9 +1,10 @@
 document.addEventListener('DOMContentLoaded', function() {
 if (window.location.pathname === '/index.php') {
-        fileUpload();
+        fileUpload('fileInput');
     }else if (window.location.pathname === '/project_view.php') {
         editProject();
-	uploadPreview();
+	    uploadPreview();
+        fileUpload('preview_image');
     }
  
    
@@ -61,9 +62,9 @@ function editProject(){
 
 }
 
-function fileUpload(){
- const fileInput = document.getElementById('fileInput');
-        const fileList = document.getElementById('fileList');
+function fileUpload(fileInputID){
+ const fileInput = document.getElementById(fileInputID);
+ const fileList = document.getElementById('fileList');
 
         fileInput.addEventListener('change', function() {
             const files = fileInput.files;
