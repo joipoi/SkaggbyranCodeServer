@@ -210,9 +210,6 @@ input[type="text"], input[type="password"]
 	margin-top: 9px;
 	height: 14px;
 }
-#loggedInMessage{
-	float:right;
-}
 
 #mainNavMenu ul li a
 {

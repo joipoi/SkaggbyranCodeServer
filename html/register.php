@@ -14,25 +14,30 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $username = $_POST['username'];
     $password = password_hash($_POST['password'], PASSWORD_DEFAULT); // Hash the password
 
-    // Check if username already exists
-    $stmt = $conn->prepare("SELECT * FROM user WHERE username = ?");
-    $stmt->bind_param("s", $username);
-    $stmt->execute();
-    $result = $stmt->get_result();
-
-    if ($result->num_rows > 0) {
-        $errorMessage = "Username already exists.";
+    // Validate username
+    if (!preg_match('/^[a-zA-Z0-9_]{3,20}$/', $username)) {
+        $errorMessage = "Username must be 3-20 characters long and can only contain letters, numbers, and underscores.";
     } else {
-        // Insert new user
-        $stmt = $conn->prepare("INSERT INTO user (username, password) VALUES (?, ?)");
-        $stmt->bind_param("ss", $username, $password);
-        if ($stmt->execute()) {
-            $errorMessage = "Registration successful!";
+        // Check if username already exists
+        $stmt = $conn->prepare("SELECT * FROM user WHERE username = ?");
+        $stmt->bind_param("s", $username);
+        $stmt->execute();
+        $result = $stmt->get_result();
+
+        if ($result->num_rows > 0) {
+            $errorMessage = "Username already exists.";
         } else {
-            $errorMessage = "Error: " . $stmt->error;
+            // Insert new user
+            $stmt = $conn->prepare("INSERT INTO user (username, password) VALUES (?, ?)");
+            $stmt->bind_param("ss", $username, $password);
+            if ($stmt->execute()) {
+                $errorMessage = "Registration successful!";
+            } else {
+                $errorMessage = "Error: " . $stmt->error;
+            }
         }
+        $stmt->close();
     }
-    $stmt->close();
 }
 
 $conn->close();
@@ -57,8 +62,8 @@ $conn->close();
         <label for="password">Password:</label>
         <input type="password" name="password" required>
         <input class="submitBtn" type="submit" value="Register">
-        <label>  <?php if (!empty($errorMessage)) echo $errorMessage; ?> </label> <br>
- <a href="login.php">Already have an account? Log in</a>  
- </form>
+        <label><?php if (!empty($errorMessage)) echo $errorMessage; ?></label> <br>
+        <a href="login.php">Already have an account? Log in</a>  
+    </form>
 </body>
 </html>
