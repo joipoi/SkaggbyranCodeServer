@@ -1,7 +1,9 @@
 <?php
 // login.php
-
-session_start();
+if(!isset($_SESSION)) 
+{ 
+    session_start(); 
+}
 
 $servername = getenv('DB_SERVER');
 $db_username = getenv('DB_USER');
@@ -31,10 +33,10 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             header("Location: index.php"); // Redirect to upload page
             exit();
         } else {
-            echo "Invalid password.";
+            $errorMessage = "Invalid password.";
         }
     } else {
-        echo "No user found with that username.";
+        $errorMessage = "No user found with that username.";
     }
     $stmt->close();
 }
@@ -64,6 +66,7 @@ $conn->close();
         <label for="password">Password:</label>
         <input type="password" name="password" required>
         <input class="submitBtn" type="submit" value="Login">
+        <label>  <?php if (!empty($errorMessage)) echo $errorMessage; ?> </label> <br>
         <a href="register.php">Don't have an account? Register</a>
     </form>
 </body>

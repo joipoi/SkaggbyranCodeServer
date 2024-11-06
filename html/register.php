@@ -1,5 +1,4 @@
 <?php
-// register.php
 
 $servername = getenv('DB_SERVER');
 $db_username = getenv('DB_USER');
@@ -22,15 +21,15 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $result = $stmt->get_result();
 
     if ($result->num_rows > 0) {
-        echo "Username already exists.";
+        $errorMessage = "Username already exists.";
     } else {
         // Insert new user
         $stmt = $conn->prepare("INSERT INTO user (username, password) VALUES (?, ?)");
         $stmt->bind_param("ss", $username, $password);
         if ($stmt->execute()) {
-            echo "Registration successful!";
+            $errorMessage = "Registration successful!";
         } else {
-            echo "Error: " . $stmt->error;
+            $errorMessage = "Error: " . $stmt->error;
         }
     }
     $stmt->close();
@@ -58,6 +57,7 @@ $conn->close();
         <label for="password">Password:</label>
         <input type="password" name="password" required>
         <input class="submitBtn" type="submit" value="Register">
+        <label>  <?php if (!empty($errorMessage)) echo $errorMessage; ?> </label> <br>
  <a href="login.php">Already have an account? Log in</a>  
  </form>
 </body>

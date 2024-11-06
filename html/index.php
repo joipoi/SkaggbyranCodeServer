@@ -1,5 +1,8 @@
 <?php
-session_start();
+ if(!isset($_SESSION)) 
+ { 
+     session_start(); 
+ }
 $user = isset($_SESSION['username']) ? $_SESSION['username'] : 'guest';
 ?>
 

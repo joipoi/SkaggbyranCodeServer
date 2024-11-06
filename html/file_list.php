@@ -1,5 +1,4 @@
 <?php
-// file_list.php
 
 // Sanitize input
 $username = isset($_GET['user']) ? preg_replace('/[^a-zA-Z0-9_-]/', '', $_GET['user']) : null;
