@@ -145,9 +145,7 @@ function findIndexFile($directory, $htmlFiles)
                 $startFile = $htmlFiles[array_rand($htmlFiles)];
             }
             ?>
-
-            
-
+            <div id="main_div">
             <div id="links_container">
                 <p><a class="defaultLink" href="<?= htmlspecialchars($startFile) ?>" target="_blank">View Project</a></p>
                 <p><a class="defaultLink"
@@ -180,12 +178,16 @@ function findIndexFile($directory, $htmlFiles)
                 <label> <?php if (!empty($errorMessage))
                     echo $errorMessage; ?> </label> <br>
             </form>
+
+            <img class="icon" src="images/delete.png">
+            <img class="icon" src="images/download.webp">
         </div>
 
         <div id="project_view_preview_div">
             <a href="<?= htmlspecialchars($startFile) ?>">
                 <img id="project_view_preview" src="<?= $previewImagePath[0] ?>">
                 </a>
+            </div>
             </div>
 
     <?php else: ?>

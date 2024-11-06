@@ -16,6 +16,12 @@ body
 #fileListUL{
 	list-style-type: none;
 }
+.icon{
+	width:70px;
+	height:auto;
+	margin-top: 10px;
+	margin-left:15px;
+}
 
 /* project_view.php styling */
 #project_view_preview{
@@ -30,7 +36,12 @@ body
 #links_container{
 	float:left;
 }
-
+/*
+#main_div{
+  max-width: fit-content;
+  margin-left: auto;
+  margin-right: auto;
+}*/
 
 
 .defaultLink{
