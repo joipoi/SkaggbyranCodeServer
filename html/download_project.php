@@ -9,7 +9,7 @@ $projectDir = "uploads/$user/$project";
 
 // Check if the project directory exists
 if (is_dir($projectDir)) {
-    downloadProjectAsZip($projectDir, "$project.zip");
+    downloadProjectAsZip($projectDir, "$project.zip", $user);
 } else {
     echo "Project does not exist.";
 }
@@ -20,32 +20,39 @@ if (is_dir($projectDir)) {
  * @param string $directory The directory to compress.
  * @param string $zipFileName The name of the ZIP file to create.
  */
-function downloadProjectAsZip($directory, $zipFileName) {
+function downloadProjectAsZip($directory, $zipFileName, $user) {
     $zip = new ZipArchive();
 
     if ($zip->open($zipFileName, ZipArchive::CREATE | ZipArchive::OVERWRITE) === TRUE) {
-        // Add files to the ZIP file
         $files = new RecursiveIteratorIterator(new RecursiveDirectoryIterator($directory));
-        
+        $fileAdded = false; // Track if any files are added
+
         foreach ($files as $file) {
             if (!$file->isDir()) {
                 $filePath = $file->getRealPath();
-                $relativePath = substr($filePath, strlen($directory));
-                $zip->addFile($filePath, $relativePath);
+                $relativePath = str_replace("/var/www/upload/html/uploads/$user/", '', $filePath);
+                error_log("file path = $filePath"); // Log error
+                error_log("relative path = $relativePath");
+                if ($zip->addFile($filePath, $relativePath)) {
+                    $fileAdded = true; // Mark that a file was added
+                } else {
+                    error_log("Failed to add file: $filePath"); // Log error
+                }
             }
         }
 
-        $zip->close();
-
-        // Set headers to initiate download
-        header('Content-Type: application/zip');
-        header('Content-Disposition: attachment; filename="' . basename($zipFileName) . '"');
-        header('Content-Length: ' . filesize($zipFileName));
-        readfile($zipFileName);
-
-        // Delete the ZIP file after download
-        unlink($zipFileName);
-        exit();
+        if ($fileAdded) {
+            $zip->close();
+            header('Content-Type: application/zip');
+            header('Content-Disposition: attachment; filename="' . basename($zipFileName) . '"');
+            header('Content-Length: ' . filesize($zipFileName));
+            readfile($zipFileName);
+            unlink($zipFileName);
+            exit();
+        } else {
+            $zip->close();
+            echo "No files were added to the ZIP.";
+        }
     } else {
         echo "Could not create ZIP file.";
     }

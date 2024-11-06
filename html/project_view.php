@@ -34,7 +34,7 @@ function uploadPreview($directory)
     $check = getimagesize($_FILES['preview_image']['tmp_name']);
     if ($check !== false) {
         // Check file size (limit to 2MB here)
-        if ($_FILES['preview_image']['size'] > 2000000) {
+        if ($_FILES['preview_image']['size'] > 3000000) {
             $errorMessage = "Sorry, your file is too large.";
         } else {
             // Allow certain file formats
@@ -99,6 +99,39 @@ function findIndexFile($directory, $htmlFiles)
     return null;
 }
 
+function displayFiles($directory, $username, $projectName) {
+    // Ensure the directory ends with a trailing slash
+    $directory = rtrim($directory, '/') . '/';
+    
+    // Get the list of files
+    $files = glob($directory . '*');
+    
+    if (empty($files)): ?>
+        <p>No files found in this project.</p>
+    <?php else: ?>
+        <ul id="fileListUL">
+            <?php foreach ($files as $file): ?>
+                <?php if (is_file($file)): ?>
+                    <?php $fileName = basename($file); ?>
+                    <li>
+                        <a class="defaultLink" href="<?= htmlspecialchars($file) ?>"
+                            target="_blank"><?= htmlspecialchars($fileName) ?></a>
+                        <a href="view_file.php?user=<?= urlencode($username) ?>&project=<?= urlencode($projectName) ?>&file=<?= urlencode($fileName) ?>">
+                        <img class="icon" src="images/view.png">
+                        </a>
+                        <a href="edit_file.php?user=<?= urlencode($username) ?>&project=<?= urlencode($projectName) ?>&file=<?= urlencode($fileName) ?>">
+                        <img class="icon" src="images/edit.webp">
+                        </a>
+                        <a href="delete_file.php?user=<?= urlencode($username) ?>&project=<?= urlencode($projectName) ?>&file=<?= urlencode($fileName) ?>" onclick="return confirm('Are you sure you want to delete this file?');">
+    <img class="icon" src="images/delete.png" alt="Delete">
+</a>
+                    </li>
+                <?php endif; ?>
+            <?php endforeach; ?>
+        </ul>
+    <?php endif; 
+}
+
 ?>
 
 <!DOCTYPE html>
@@ -121,12 +154,12 @@ function findIndexFile($directory, $htmlFiles)
         <!-- Rename project section -->
         <?php if ($username === 'guest' || (isset($_SESSION['username']) && $_SESSION['username'] === $username)): ?>
             <div>
-            <span style="font-size:30px;" id="project-name-display"><?= htmlspecialchars($projectName) ?></span>
-            <input type="text" id="new_project_name" style="display:none;" placeholder="New Project Name" required>
-            <button id="edit-button">✏️ Edit</button>
-            <button id="confirm-button" style="display:none;">✅ Confirm</button>
-            <button id="cancel-button" style="display:none;">❌ Cancel</button>
-        </div>
+                <span style="font-size:30px;" id="project-name-display"><?= htmlspecialchars($projectName) ?></span>
+                <input type="text" id="new_project_name" style="display:none;" placeholder="New Project Name" required>
+                <button id="edit-button">✏️ Edit</button>
+                <button id="confirm-button" style="display:none;">✅ Confirm</button>
+                <button id="cancel-button" style="display:none;">❌ Cancel</button>
+            </div>
             <script>
                 // Pass PHP variables to JavaScript
                 const username = <?= json_encode($username) ?>;
@@ -149,49 +182,52 @@ function findIndexFile($directory, $htmlFiles)
             }
             ?>
             <div id="main_div">
-            <div id="links_container">
-                <p><a class="defaultLink" href="<?= htmlspecialchars($startFile) ?>" target="_blank">View Project</a></p>
+                <div id="links_container">
+                    <p><a class="defaultLink" href="<?= htmlspecialchars($startFile) ?>" target="_blank">View Project</a></p>
+                <?php else: ?>
+                    <p>No files found for user <?= htmlspecialchars($username) ?> in project
+                        <?= htmlspecialchars($projectName) ?>.
+                    </p>
+                <?php endif; ?>
+
+                <!-- Link to download the project -->
                 <p><a class="defaultLink"
-                        href="file_list.php?user=<?= urlencode($username) ?>&project=<?= urlencode($projectName) ?>">View Files
-                        in Project</a></p>
+                        href="download_project.php?user=<?= urlencode($username) ?>&project=<?= urlencode($projectName) ?>">Download
+                        Project</a></p>
 
-            <?php else: ?>
-                <p>No files found for user <?= htmlspecialchars($username) ?> in project <?= htmlspecialchars($projectName) ?>.
-                </p>
-            <?php endif; ?>
+                <!-- Link to delete the project -->
+                <?php if ($username === 'guest' || (isset($_SESSION['username']) && $_SESSION['username'] === $username)): ?>
+                    <p><a class="defaultLink"
+                            href="delete_project.php?user=<?= urlencode($username) ?>&project=<?= urlencode($projectName) ?>"
+                            onclick="return confirm('Are you sure you want to delete this project?');">Delete Project</a></p>
+                <?php endif; ?>
 
-            <!-- Link to download the project -->
-            <p><a class="defaultLink"
-                    href="download_project.php?user=<?= urlencode($username) ?>&project=<?= urlencode($projectName) ?>">Download
-                    Project</a></p>
+                <!-- Image upload form -->
+                <form action="project_view.php?user=<?= urlencode($username) ?>&project=<?= urlencode($projectName) ?>"
+                    method="POST" enctype="multipart/form-data">
+                    <input type="file" name="preview_image" id="preview_image" accept="image/*" required
+                        style="display: none;">
+                    <label id="previewBtn" for="preview_image" class="defaultLink">Upload Preview Image</label>
+                    <input id="previewSubmit" type="submit" value="Upload Preview Image" style="display: none;">
+                    <label> <?php if (!empty($errorMessage))
+                        echo $errorMessage; ?> </label> <br>
+                </form>
 
-            <!-- Link to delete the project -->
-            <?php if ($username === 'guest' || (isset($_SESSION['username']) && $_SESSION['username'] === $username)): ?>
-                <p><a class="defaultLink"
-                        href="delete_project.php?user=<?= urlencode($username) ?>&project=<?= urlencode($projectName) ?>"
-                        onclick="return confirm('Are you sure you want to delete this project?');">Delete Project</a></p>
-            <?php endif; ?>
+                <img class="icon" src="images/delete.png">
+                <img class="icon" src="images/download.webp">
+            </div>
 
-            <!-- Image upload form -->
-            <form action="project_view.php?user=<?= urlencode($username) ?>&project=<?= urlencode($projectName) ?>"
-                method="POST" enctype="multipart/form-data">
-                <input type="file" name="preview_image" id="preview_image" accept="image/*" required style="display: none;">
-                <label id="previewBtn" for="preview_image" class="defaultLink">Upload Preview Image</label>
-                <input id="previewSubmit" type="submit" value="Upload Preview Image" style="display: none;">
-                <label> <?php if (!empty($errorMessage))
-                    echo $errorMessage; ?> </label> <br>
-            </form>
-
-            <img class="icon" src="images/delete.png">
-            <img class="icon" src="images/download.webp">
-        </div>
-
-        <div id="project_view_preview_div">
-            <a href="<?= htmlspecialchars($startFile) ?>">
-                <img id="project_view_preview" src="<?= $previewImagePath[0] ?>">
+            <div id="project_view_preview_div">
+                <a href="<?= htmlspecialchars($startFile) ?>">
+                    <img id="project_view_preview" src="<?= $previewImagePath[0] ?>">
                 </a>
             </div>
-            </div>
+
+            <!-- listing project files -->
+            <div id="file_list_div">
+               <?php displayFiles($directory, $username, $projectName) ?>
+
+        </div>
 
     <?php else: ?>
         <p>No user or project specified.</p>

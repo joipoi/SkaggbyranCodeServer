@@ -2,12 +2,15 @@
 session_start();
 
 // Sanitize input
-$user = isset($_GET['user']) ? urlencode($_GET['user']) : 'guest';
+$projectUser = isset($_GET['user']) ? urlencode($_GET['user']) : 'guest';
 $project = isset($_GET['project']) ? urlencode($_GET['project']) : 'defaultProject';
 $file = isset($_GET['file']) ? $_GET['file'] : '';
+$filePath = "uploads/$projectUser/$project/$file";
+$isLoggedIn = isset($_SESSION['username']);
+$currentUser = $isLoggedIn ? $_SESSION['username'] : 'guest';
 
 // Create the link to file_list.php
-$file_list_link = "file_list.php?user=$user&project=$project";
+$file_list_link = "project_view.php?user=$projectUser&project=$project";
 
 function displayFileContent($filePath, $fileName)
 {
@@ -20,12 +23,12 @@ function displayFileContent($filePath, $fileName)
     }
 }
 
-function displayEditDeleteOptions($user, $project, $fileName)
+function displayEditDeleteOptions($projectUser, $project, $fileName, $currentUser)
 {
-    if ($user === 'guest' || (isset($_SESSION['username']) && $user === $_SESSION['username'])) {
+    if ($projectUser === 'guest' || $projectUser === $currentUser ) {
         echo "<p>
-                <a class='defaultLink' href='edit_file.php?user=" . urlencode($user) . "&project=" . urlencode($project) . "&file=" . urlencode($fileName) . "'>Edit</a> 
-                <a class='defaultLink' href='delete_file.php?user=" . urlencode($user) . "&project=" . urlencode($project) . "&file=" . urlencode($fileName) . "' onclick=\"return confirm('Are you sure you want to delete this file?');\">Delete</a>
+                <a class='defaultLink' href='edit_file.php?user=" . urlencode($projectUser) . "&project=" . urlencode($project) . "&file=" . urlencode($fileName) . "'>Edit</a> 
+                <a class='defaultLink' href='delete_file.php?user=" . urlencode($projectUser) . "&project=" . urlencode($project) . "&file=" . urlencode($fileName) . "' onclick=\"return confirm('Are you sure you want to delete this file?');\">Delete</a>
               </p>";
     }
 }
@@ -54,13 +57,9 @@ function displayEditDeleteOptions($user, $project, $fileName)
 
     <?php if ($file): ?>
         <?php
-        $username = preg_replace('/[^a-zA-Z0-9_-]/', '', $_GET['user']);
-        $projectName = preg_replace('/[^a-zA-Z0-9_-]/', '', $_GET['project']);
-        $fileName = preg_replace('/[^a-zA-Z0-9_.-]/', '', $file);
-        $filePath = "uploads/$username/$projectName/$fileName";
 
-        displayEditDeleteOptions($user, $project, $fileName);
-        displayFileContent($filePath, $fileName);
+        displayEditDeleteOptions($projectUser, $project, $file, $currentUser);
+        displayFileContent($filePath, $file);
        
         ?>
     <?php else: ?>
