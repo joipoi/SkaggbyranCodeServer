@@ -2,6 +2,9 @@ body
 {
 	font-family: sans-serif;
 }
+a{
+	text-decoration: none;
+}
 
 #welcome, h1
 {
@@ -16,47 +19,8 @@ body
 #fileListUL{
 	list-style-type: none;
 }
-.icon{
-	width:70px;
-	height:auto;
-	margin-top: 10px;
-	margin-left:15px;
-}
-
-/* project_view.php styling */
-#project_view_preview{
-	width: 700px;
-	height:auto;
-}
-#project_view_preview_div{
-	float:left;
-	margin-left: 10px;
-	margin-top: 10px;
-}
-#links_container{
-	float:left;
-}
-/*
-#main_div{
-  max-width: fit-content;
-  margin-left: auto;
-  margin-right: auto;
-}*/
 
 
-.defaultLink{
-background: rgb(187,17,65);
-	color:black;
-	text-decoration: none;
-  	border: 1px solid #ccc;
-	border-radius: 4px;
-  	display: inline-block;
-  	padding: 10px 12px;
-  	cursor: pointer;
-	font-size: 16px;
-	width:200px;
-
-}
 #previewSubmit{
 margin-top: 20px;
 }
@@ -225,12 +189,66 @@ input[type="text"], input[type="password"]
 	color: rgb(187,17,65);
 }
 
-#mainNavMenu ul li .material-symbols-outlined
+#mainNavMenu ul li #logout
 {
 	font-size: 20px;
 	margin: 0 0 0 4px;
 }
-/* Project list styling */
+
+/* project_view.php styling */
+#project_view_preview{
+	width: 700px;
+	height:auto;
+}
+#project_view_preview_div{
+	float:left;
+	margin-left: 10px;
+	margin-top: 10px;
+}
+#links_container{
+	float:left;
+}
+#file_list_div{
+	float:left;
+}
+.icon1{
+	font-size: 35px !important;
+	float:right;
+}
+.icon2{
+	font-size: 35px !important;
+	margin: 0 10px;
+	color:black;
+	position:relative;
+	top:10px;
+}
+#cancel{
+	font-size:20px;
+	position:relative;
+	top:7px;
+}
+/*
+#main_div{
+  max-width: fit-content;
+  margin-left: auto;
+  margin-right: auto;
+}*/
+
+
+.defaultLink{
+background: rgb(187,17,65);
+	color:black;
+	text-decoration: none;
+  	border: 1px solid #ccc;
+	border-radius: 4px;
+  	display: inline-block;
+  	padding: 10px 12px;
+  	cursor: pointer;
+	font-size: 16px;
+	width:200px;
+}
+
+/* Projects.php styling */
 
 .userName {
     font-size: 1.8em;
@@ -260,6 +278,7 @@ input[type="text"], input[type="password"]
     transition: transform 0.2s;
 }
 
+
 .projectDiv:hover {
     transform: scale(1.05);
 }
@@ -279,6 +298,7 @@ input[type="text"], input[type="password"]
     border-top-left-radius: 8px;
     border-top-right-radius: 8px;
 }
+
 /*
 footer
 {

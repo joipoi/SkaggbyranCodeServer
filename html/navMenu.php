@@ -17,7 +17,7 @@ $user = isset($_SESSION['username']) ? $_SESSION['username'] : 'guest';
         <li id="loggedInMessage">|&nbsp; &nbsp; Logged in as: <?php echo htmlspecialchars($user); ?></li>
         <li>
             <a href="logout.php" style="color: #eee;" title="Logout">
-                <span class="material-symbols-outlined">logout</span>
+                <span id="logout" class="material-symbols-outlined">logout</span>
             </a>
         </li>
     </ul>

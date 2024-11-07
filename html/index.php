@@ -3,7 +3,6 @@
  { 
      session_start(); 
  }
-$user = isset($_SESSION['username']) ? $_SESSION['username'] : 'guest';
 ?>
 
 <!DOCTYPE html>

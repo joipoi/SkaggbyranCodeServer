@@ -2,14 +2,14 @@
 session_start();
 
 // Get user and project information
-$user = isset($_GET['user']) ? $_GET['user'] : 'guest';
+$projectUser = isset($_GET['user']) ? $_GET['user'] : 'guest';
 $project = isset($_GET['project']) ? $_GET['project'] : 'defaultProject';
 
-$projectDir = "uploads/$user/$project";
+$projectDir = "uploads/$projectUser/$project";
 
 // Check if the project directory exists
 if (is_dir($projectDir)) {
-    downloadProjectAsZip($projectDir, "$project.zip", $user);
+    downloadProjectAsZip($projectDir, "$project.zip", $projectUser);
 } else {
     echo "Project does not exist.";
 }
@@ -20,7 +20,7 @@ if (is_dir($projectDir)) {
  * @param string $directory The directory to compress.
  * @param string $zipFileName The name of the ZIP file to create.
  */
-function downloadProjectAsZip($directory, $zipFileName, $user) {
+function downloadProjectAsZip($directory, $zipFileName, $projectUser) {
     $zip = new ZipArchive();
 
     if ($zip->open($zipFileName, ZipArchive::CREATE | ZipArchive::OVERWRITE) === TRUE) {
@@ -30,7 +30,7 @@ function downloadProjectAsZip($directory, $zipFileName, $user) {
         foreach ($files as $file) {
             if (!$file->isDir()) {
                 $filePath = $file->getRealPath();
-                $relativePath = str_replace("/var/www/upload/html/uploads/$user/", '', $filePath);
+                $relativePath = str_replace("/var/www/upload/html/uploads/$projectUser/", '', $filePath);
                 error_log("file path = $filePath"); // Log error
                 error_log("relative path = $relativePath");
                 if ($zip->addFile($filePath, $relativePath)) {

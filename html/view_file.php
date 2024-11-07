@@ -53,7 +53,11 @@ function displayEditDeleteOptions($projectUser, $project, $fileName, $currentUse
 
 <?php include 'navMenu.php'; ?>
 
-    <a class="defaultLink" href="<?= htmlspecialchars($file_list_link) ?>">Back</a>
+    <a class="defaultLink" href="<?= htmlspecialchars($file_list_link) ?>">
+    <span class="material-symbols-outlined">
+arrow_back
+</span>
+    </a>
 
     <?php if ($file): ?>
         <?php

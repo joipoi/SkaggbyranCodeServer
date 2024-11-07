@@ -117,13 +117,17 @@ function displayFiles($directory, $username, $projectName) {
                         <a class="defaultLink" href="<?= htmlspecialchars($file) ?>"
                             target="_blank"><?= htmlspecialchars($fileName) ?></a>
                         <a href="view_file.php?user=<?= urlencode($username) ?>&project=<?= urlencode($projectName) ?>&file=<?= urlencode($fileName) ?>">
-                        <img class="icon" src="images/view.png">
+                        <span class="icon2 material-symbols-outlined ">
+visibility
+</span>
                         </a>
                         <a href="edit_file.php?user=<?= urlencode($username) ?>&project=<?= urlencode($projectName) ?>&file=<?= urlencode($fileName) ?>">
-                        <img class="icon" src="images/edit.webp">
+                        <span class="material-symbols-outlined icon2">
+edit
+</span>
                         </a>
                         <a href="delete_file.php?user=<?= urlencode($username) ?>&project=<?= urlencode($projectName) ?>&file=<?= urlencode($fileName) ?>" onclick="return confirm('Are you sure you want to delete this file?');">
-    <img class="icon" src="images/delete.png" alt="Delete">
+                        <span class="material-symbols-outlined icon2">delete</span>
 </a>
                     </li>
                 <?php endif; ?>
@@ -193,13 +197,21 @@ function displayFiles($directory, $username, $projectName) {
                 <!-- Link to download the project -->
                 <p><a class="defaultLink"
                         href="download_project.php?user=<?= urlencode($username) ?>&project=<?= urlencode($projectName) ?>">Download
-                        Project</a></p>
+                        Project
+                        <span class="material-symbols-outlined icon1">
+download
+</span>
+                    </a></p>
 
                 <!-- Link to delete the project -->
                 <?php if ($username === 'guest' || (isset($_SESSION['username']) && $_SESSION['username'] === $username)): ?>
                     <p><a class="defaultLink"
                             href="delete_project.php?user=<?= urlencode($username) ?>&project=<?= urlencode($projectName) ?>"
-                            onclick="return confirm('Are you sure you want to delete this project?');">Delete Project</a></p>
+                            onclick="return confirm('Are you sure you want to delete this project?');">Delete Project
+                            <span class="material-symbols-outlined icon1">delete</span>
+                        </a>
+                        
+                        </p>
                 <?php endif; ?>
 
                 <!-- Image upload form -->
@@ -214,9 +226,6 @@ function displayFiles($directory, $username, $projectName) {
                     <label> <?php if (!empty($errorMessage))
                         echo $errorMessage; ?> </label> <br>
                 </form>
-
-                <img class="icon" src="images/delete.png">
-                <img class="icon" src="images/download.webp">
             </div>
 
             <div id="project_view_preview_div">
