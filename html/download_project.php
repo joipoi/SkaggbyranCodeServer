@@ -6,7 +6,6 @@ $projectUser = isset($_GET['user']) ? $_GET['user'] : 'guest';
 $project = isset($_GET['project']) ? $_GET['project'] : 'defaultProject';
 
 $projectDir = "uploads/$projectUser/$project";
-
 // Check if the project directory exists
 if (is_dir($projectDir)) {
     downloadProjectAsZip($projectDir, "/tmp/$project.zip", $projectUser);
@@ -29,8 +28,9 @@ function downloadProjectAsZip($directory, $zipFileName, $projectUser) {
 
         foreach ($files as $file) {
             if (!$file->isDir()) {
-                $filePath = $file->getRealPath();
-                $relativePath = str_replace("/var/www/upload/html/uploads/$projectUser/", '', $filePath);
+		    $filePath = $file->getRealPath();
+		   $uploadsPath = "/var/www/SkaggbyranCodeServer/html/uploads";
+                $relativePath = str_replace("$uploadsPath/$projectUser/", '', $filePath);
                 error_log("file path = $filePath"); // Log error
                 error_log("relative path = $relativePath");
                 if ($zip->addFile($filePath, $relativePath)) {
