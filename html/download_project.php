@@ -9,7 +9,7 @@ $projectDir = "uploads/$projectUser/$project";
 
 // Check if the project directory exists
 if (is_dir($projectDir)) {
-    downloadProjectAsZip($projectDir, "$project.zip", $projectUser);
+    downloadProjectAsZip($projectDir, "/tmp/$project.zip", $projectUser);
 } else {
     echo "Project does not exist.";
 }
