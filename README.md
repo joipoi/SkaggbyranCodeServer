@@ -1,6 +1,5 @@
 ## Description
-This project lets users upload projects consisting of html, css, javascript and images.
-These projects are then  hosted on a raspberry pi currently at "Skäggbyrån".
+This project lets users upload projects consisting of html, css, javascript and images. These are then hosted on the server and can be viewed  by other users. It has currently only been tested on a linux debian machine.
 ## Download
 You can download this project as a zip file by pressing the green button that says "Code" and then clicking "Download ZIP".
 
