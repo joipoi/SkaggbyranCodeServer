@@ -5,6 +5,14 @@ These projects are then  hosted on a raspberry pi currently at "Skäggbyrån".
 You can download this project as a zip file by pressing the green button that says "Code" and then clicking "Download ZIP".
 
 You can also download it with git by running "git clone https://github.com/joipoi/upload.git"
+
+## Todo/Problems
+Currently it is a pain to get this up and running on your own machine. I think I could fix this but I have not yet, here is what i think you need to do:
+- Set correct permissions and owners for all the files in the project. This is because we are creating and deleting files and it might not work if you do not have the right permissions.
+- Download php modules php-mysql, php-zip
+- Since this project uses apache you need to fix some settings in apache. Make sure you have the document root in the right place and also you need Enviroment Variables since I use that in the code.
+- This project uses a mysql database and you would need to set that up to match what I have, I should have a sql dump here to make it easier.
+
 ## Files
 
 ### Can be accessed/has html
